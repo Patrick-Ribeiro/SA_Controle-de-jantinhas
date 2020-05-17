@@ -27,20 +27,87 @@ public class TelaPratos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        painelSuperior = new javax.swing.JPanel();
+        ButtonFechar = new javax.swing.JButton();
+        ButtonMinimizar = new javax.swing.JButton();
+        painelLateral = new javax.swing.JPanel();
+        painelCentral = new javax.swing.JPanel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Controle de jantinhas");
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        painelSuperior.setBackground(new java.awt.Color(167, 14, 19));
+        painelSuperior.setPreferredSize(new java.awt.Dimension(1366, 35));
+
+        ButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Fechar.png"))); // NOI18N
+        ButtonFechar.setBorder(null);
+        ButtonFechar.setBorderPainted(false);
+        ButtonFechar.setContentAreaFilled(false);
+
+        ButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Minimizar.png"))); // NOI18N
+        ButtonMinimizar.setBorder(null);
+        ButtonMinimizar.setBorderPainted(false);
+        ButtonMinimizar.setContentAreaFilled(false);
+
+        javax.swing.GroupLayout painelSuperiorLayout = new javax.swing.GroupLayout(painelSuperior);
+        painelSuperior.setLayout(painelSuperiorLayout);
+        painelSuperiorLayout.setHorizontalGroup(
+            painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelSuperiorLayout.createSequentialGroup()
+                .addContainerGap(1302, Short.MAX_VALUE)
+                .addComponent(ButtonMinimizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ButtonFechar)
+                .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        painelSuperiorLayout.setVerticalGroup(
+            painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelSuperiorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ButtonMinimizar)
+                    .addComponent(ButtonFechar))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
+
+        getContentPane().add(painelSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
+
+        painelLateral.setBackground(new java.awt.Color(26, 26, 26));
+        painelLateral.setPreferredSize(new java.awt.Dimension(360, 740));
+
+        javax.swing.GroupLayout painelLateralLayout = new javax.swing.GroupLayout(painelLateral);
+        painelLateral.setLayout(painelLateralLayout);
+        painelLateralLayout.setHorizontalGroup(
+            painelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+        painelLateralLayout.setVerticalGroup(
+            painelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 730, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(painelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 38, -1, 730));
+
+        painelCentral.setBackground(new java.awt.Color(242, 242, 235));
+        painelCentral.setPreferredSize(new java.awt.Dimension(1006, 500));
+
+        javax.swing.GroupLayout painelCentralLayout = new javax.swing.GroupLayout(painelCentral);
+        painelCentral.setLayout(painelCentralLayout);
+        painelCentralLayout.setHorizontalGroup(
+            painelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1006, Short.MAX_VALUE)
+        );
+        painelCentralLayout.setVerticalGroup(
+            painelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 730, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, 730));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -79,5 +146,10 @@ public class TelaPratos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonFechar;
+    private javax.swing.JButton ButtonMinimizar;
+    private javax.swing.JPanel painelCentral;
+    private javax.swing.JPanel painelLateral;
+    private javax.swing.JPanel painelSuperior;
     // End of variables declaration//GEN-END:variables
 }
