@@ -32,21 +32,48 @@ public class TelaPratos extends javax.swing.JFrame {
         ButtonMinimizar = new javax.swing.JButton();
         painelLateral = new javax.swing.JPanel();
         painelCentral = new javax.swing.JPanel();
+        painelPrato1 = new javax.swing.JPanel();
+        painelTituloPrato1 = new javax.swing.JPanel();
+        linhaInferiorPrato1 = new javax.swing.JLabel();
+        textoPrato1 = new javax.swing.JLabel();
+        linhaSuperiorPrato1 = new javax.swing.JLabel();
+        iconePrato1 = new javax.swing.JLabel();
+        painelSaladaPrato1 = new javax.swing.JPanel();
+        iconeCirculoSalada0 = new javax.swing.JLabel();
+        buttonDiminuirSalada0 = new javax.swing.JButton();
+        buttonAdicionarSalada0 = new javax.swing.JButton();
+        iconeSalada0 = new javax.swing.JLabel();
+        painelCarnePrato1 = new javax.swing.JPanel();
+        iconeCirculoCarne0 = new javax.swing.JLabel();
+        buttonDiminuirCarne0 = new javax.swing.JButton();
+        buttonAdicionarCarne0 = new javax.swing.JButton();
+        iconeCarne0 = new javax.swing.JLabel();
+        painelArrozPrato1 = new javax.swing.JPanel();
+        iconeCirculoArroz0 = new javax.swing.JLabel();
+        buttonDiminuirArroz0 = new javax.swing.JButton();
+        buttonAdicionarArroz0 = new javax.swing.JButton();
+        iconeArroz0 = new javax.swing.JLabel();
+        painelPreco0 = new javax.swing.JPanel();
+        textoRS = new javax.swing.JLabel();
+        textoPrecoReais = new javax.swing.JLabel();
+        textoPrecoMoeda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Controle de jantinhas");
+        setMinimumSize(new java.awt.Dimension(1366, 768));
         setUndecorated(true);
+        setSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         painelSuperior.setBackground(new java.awt.Color(167, 14, 19));
         painelSuperior.setPreferredSize(new java.awt.Dimension(1366, 35));
 
-        ButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Fechar.png"))); // NOI18N
+        ButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Fechar-26x26.png"))); // NOI18N
         ButtonFechar.setBorder(null);
         ButtonFechar.setBorderPainted(false);
         ButtonFechar.setContentAreaFilled(false);
 
-        ButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Minimizar.png"))); // NOI18N
+        ButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Minimizar-26x26.png"))); // NOI18N
         ButtonMinimizar.setBorder(null);
         ButtonMinimizar.setBorderPainted(false);
         ButtonMinimizar.setContentAreaFilled(false);
@@ -56,7 +83,7 @@ public class TelaPratos extends javax.swing.JFrame {
         painelSuperiorLayout.setHorizontalGroup(
             painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelSuperiorLayout.createSequentialGroup()
-                .addContainerGap(1302, Short.MAX_VALUE)
+                .addContainerGap(1300, Short.MAX_VALUE)
                 .addComponent(ButtonMinimizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonFechar)
@@ -69,7 +96,7 @@ public class TelaPratos extends javax.swing.JFrame {
                 .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ButtonMinimizar)
                     .addComponent(ButtonFechar))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(painelSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
@@ -93,15 +120,153 @@ public class TelaPratos extends javax.swing.JFrame {
         painelCentral.setBackground(new java.awt.Color(242, 242, 235));
         painelCentral.setPreferredSize(new java.awt.Dimension(1006, 500));
 
+        painelPrato1.setBackground(new java.awt.Color(242, 242, 235));
+        painelPrato1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        painelTituloPrato1.setBackground(new java.awt.Color(242, 242, 235));
+        painelTituloPrato1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        linhaInferiorPrato1.setFont(new java.awt.Font("Geometr706 BlkCn BT", 0, 24)); // NOI18N
+        linhaInferiorPrato1.setForeground(new java.awt.Color(26, 26, 26));
+        linhaInferiorPrato1.setText("_____________________________________________________________________________");
+        painelTituloPrato1.add(linhaInferiorPrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 54, -1, -1));
+
+        textoPrato1.setFont(new java.awt.Font("Geometr706 BlkCn BT", 0, 36)); // NOI18N
+        textoPrato1.setText("PRATO 1");
+        painelTituloPrato1.add(textoPrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, -1, -1));
+
+        linhaSuperiorPrato1.setFont(new java.awt.Font("Geometr706 BlkCn BT", 0, 24)); // NOI18N
+        linhaSuperiorPrato1.setForeground(new java.awt.Color(26, 26, 26));
+        linhaSuperiorPrato1.setText("_____________________________________________________________________________");
+        painelTituloPrato1.add(linhaSuperiorPrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+
+        painelPrato1.add(painelTituloPrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 90));
+
+        iconePrato1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Prato.png"))); // NOI18N
+        painelPrato1.add(iconePrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+
+        painelSaladaPrato1.setBackground(new java.awt.Color(242, 242, 235));
+        painelSaladaPrato1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        iconeCirculoSalada0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Circulo-26x26.png"))); // NOI18N
+        painelSaladaPrato1.add(iconeCirculoSalada0, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+
+        buttonDiminuirSalada0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Diminuir-16x16.png"))); // NOI18N
+        buttonDiminuirSalada0.setBorder(null);
+        buttonDiminuirSalada0.setBorderPainted(false);
+        buttonDiminuirSalada0.setContentAreaFilled(false);
+        buttonDiminuirSalada0.setMaximumSize(new java.awt.Dimension(18, 18));
+        buttonDiminuirSalada0.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonDiminuirSalada0.setPreferredSize(new java.awt.Dimension(18, 18));
+        painelSaladaPrato1.add(buttonDiminuirSalada0, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, -1));
+
+        buttonAdicionarSalada0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Adicionar-16x16.png"))); // NOI18N
+        buttonAdicionarSalada0.setBorder(null);
+        buttonAdicionarSalada0.setBorderPainted(false);
+        buttonAdicionarSalada0.setContentAreaFilled(false);
+        buttonAdicionarSalada0.setMaximumSize(new java.awt.Dimension(18, 18));
+        buttonAdicionarSalada0.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonAdicionarSalada0.setPreferredSize(new java.awt.Dimension(18, 18));
+        painelSaladaPrato1.add(buttonAdicionarSalada0, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+
+        iconeSalada0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Salada.png"))); // NOI18N
+        painelSaladaPrato1.add(iconeSalada0, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+
+        painelPrato1.add(painelSaladaPrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 110, 90));
+
+        painelCarnePrato1.setBackground(new java.awt.Color(242, 242, 235));
+        painelCarnePrato1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        iconeCirculoCarne0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Circulo-26x26.png"))); // NOI18N
+        painelCarnePrato1.add(iconeCirculoCarne0, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+
+        buttonDiminuirCarne0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Diminuir-16x16.png"))); // NOI18N
+        buttonDiminuirCarne0.setBorder(null);
+        buttonDiminuirCarne0.setBorderPainted(false);
+        buttonDiminuirCarne0.setContentAreaFilled(false);
+        buttonDiminuirCarne0.setMaximumSize(new java.awt.Dimension(18, 18));
+        buttonDiminuirCarne0.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonDiminuirCarne0.setPreferredSize(new java.awt.Dimension(18, 18));
+        painelCarnePrato1.add(buttonDiminuirCarne0, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, -1));
+
+        buttonAdicionarCarne0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Adicionar-16x16.png"))); // NOI18N
+        buttonAdicionarCarne0.setBorder(null);
+        buttonAdicionarCarne0.setBorderPainted(false);
+        buttonAdicionarCarne0.setContentAreaFilled(false);
+        buttonAdicionarCarne0.setMaximumSize(new java.awt.Dimension(18, 18));
+        buttonAdicionarCarne0.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonAdicionarCarne0.setPreferredSize(new java.awt.Dimension(18, 18));
+        painelCarnePrato1.add(buttonAdicionarCarne0, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+
+        iconeCarne0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Carne.png"))); // NOI18N
+        painelCarnePrato1.add(iconeCarne0, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+
+        painelPrato1.add(painelCarnePrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 110, 90));
+
+        painelArrozPrato1.setBackground(new java.awt.Color(242, 242, 235));
+        painelArrozPrato1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        iconeCirculoArroz0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Circulo-26x26.png"))); // NOI18N
+        painelArrozPrato1.add(iconeCirculoArroz0, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
+
+        buttonDiminuirArroz0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Diminuir-16x16.png"))); // NOI18N
+        buttonDiminuirArroz0.setBorder(null);
+        buttonDiminuirArroz0.setBorderPainted(false);
+        buttonDiminuirArroz0.setContentAreaFilled(false);
+        buttonDiminuirArroz0.setMaximumSize(new java.awt.Dimension(18, 18));
+        buttonDiminuirArroz0.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonDiminuirArroz0.setPreferredSize(new java.awt.Dimension(18, 18));
+        painelArrozPrato1.add(buttonDiminuirArroz0, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, -1));
+
+        buttonAdicionarArroz0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Adicionar-16x16.png"))); // NOI18N
+        buttonAdicionarArroz0.setBorder(null);
+        buttonAdicionarArroz0.setBorderPainted(false);
+        buttonAdicionarArroz0.setContentAreaFilled(false);
+        buttonAdicionarArroz0.setMaximumSize(new java.awt.Dimension(18, 18));
+        buttonAdicionarArroz0.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonAdicionarArroz0.setPreferredSize(new java.awt.Dimension(18, 18));
+        painelArrozPrato1.add(buttonAdicionarArroz0, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+
+        iconeArroz0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Arroz.png"))); // NOI18N
+        painelArrozPrato1.add(iconeArroz0, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+
+        painelPrato1.add(painelArrozPrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 110, 90));
+
+        painelPreco0.setBackground(new java.awt.Color(242, 242, 235));
+        painelPreco0.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        textoRS.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        textoRS.setForeground(new java.awt.Color(26, 26, 26));
+        textoRS.setText("R$");
+        painelPreco0.add(textoRS, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
+
+        textoPrecoReais.setFont(new java.awt.Font("Arial Black", 0, 48)); // NOI18N
+        textoPrecoReais.setForeground(new java.awt.Color(26, 26, 26));
+        textoPrecoReais.setText("7");
+        painelPreco0.add(textoPrecoReais, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, -1, -1));
+
+        textoPrecoMoeda.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        textoPrecoMoeda.setForeground(new java.awt.Color(26, 26, 26));
+        textoPrecoMoeda.setText("00");
+        painelPreco0.add(textoPrecoMoeda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, -1, -1));
+
+        painelPrato1.add(painelPreco0, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, 160, -1));
+
         javax.swing.GroupLayout painelCentralLayout = new javax.swing.GroupLayout(painelCentral);
         painelCentral.setLayout(painelCentralLayout);
         painelCentralLayout.setHorizontalGroup(
             painelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1006, Short.MAX_VALUE)
+            .addGroup(painelCentralLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(painelPrato1, javax.swing.GroupLayout.PREFERRED_SIZE, 936, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         painelCentralLayout.setVerticalGroup(
             painelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 730, Short.MAX_VALUE)
+            .addGroup(painelCentralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelPrato1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(474, Short.MAX_VALUE))
         );
 
         getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, 730));
@@ -148,8 +313,33 @@ public class TelaPratos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonFechar;
     private javax.swing.JButton ButtonMinimizar;
+    private javax.swing.JButton buttonAdicionarArroz0;
+    private javax.swing.JButton buttonAdicionarCarne0;
+    private javax.swing.JButton buttonAdicionarSalada0;
+    private javax.swing.JButton buttonDiminuirArroz0;
+    private javax.swing.JButton buttonDiminuirCarne0;
+    private javax.swing.JButton buttonDiminuirSalada0;
+    private javax.swing.JLabel iconeArroz0;
+    private javax.swing.JLabel iconeCarne0;
+    private javax.swing.JLabel iconeCirculoArroz0;
+    private javax.swing.JLabel iconeCirculoCarne0;
+    private javax.swing.JLabel iconeCirculoSalada0;
+    private javax.swing.JLabel iconePrato1;
+    private javax.swing.JLabel iconeSalada0;
+    private javax.swing.JLabel linhaInferiorPrato1;
+    private javax.swing.JLabel linhaSuperiorPrato1;
+    private javax.swing.JPanel painelArrozPrato1;
+    private javax.swing.JPanel painelCarnePrato1;
     private javax.swing.JPanel painelCentral;
     private javax.swing.JPanel painelLateral;
+    private javax.swing.JPanel painelPrato1;
+    private javax.swing.JPanel painelPreco0;
+    private javax.swing.JPanel painelSaladaPrato1;
     private javax.swing.JPanel painelSuperior;
+    private javax.swing.JPanel painelTituloPrato1;
+    private javax.swing.JLabel textoPrato1;
+    private javax.swing.JLabel textoPrecoMoeda;
+    private javax.swing.JLabel textoPrecoReais;
+    private javax.swing.JLabel textoRS;
     // End of variables declaration//GEN-END:variables
 }
