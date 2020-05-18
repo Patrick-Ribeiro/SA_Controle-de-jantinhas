@@ -137,6 +137,11 @@ public class TelaPratos extends javax.swing.JFrame {
                 ButtonFecharMouseClicked(evt);
             }
         });
+        ButtonFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonFecharActionPerformed(evt);
+            }
+        });
 
         ButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Minimizar-26x26.png"))); // NOI18N
         ButtonMinimizar.setBorder(null);
@@ -164,9 +169,9 @@ public class TelaPratos extends javax.swing.JFrame {
             painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelSuperiorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ButtonMinimizar)
-                    .addComponent(ButtonFechar))
+                .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ButtonFechar)
+                    .addComponent(ButtonMinimizar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -309,6 +314,11 @@ public class TelaPratos extends javax.swing.JFrame {
         buttonAdicionarArroz0.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonAdicionarArroz0.setMinimumSize(new java.awt.Dimension(18, 18));
         buttonAdicionarArroz0.setPreferredSize(new java.awt.Dimension(18, 18));
+        buttonAdicionarArroz0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAdicionarArroz0ActionPerformed(evt);
+            }
+        });
         painelArrozPrato1.add(buttonAdicionarArroz0, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
 
         iconeArroz0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Arroz.png"))); // NOI18N
@@ -673,20 +683,30 @@ public class TelaPratos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonFecharMouseClicked
-
+        
     }//GEN-LAST:event_ButtonFecharMouseClicked
 
     private void ButtonMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonMinimizarActionPerformed
-
+        setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_ButtonMinimizarActionPerformed
 
     private void painelMenuPorcoesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelMenuPorcoesMouseEntered
-
+        painelMenuPorcoes.setBackground(Color.decode("#30302F"));
+        painelMenuPratos.setBackground(Color.decode("#1A1A1A"));
     }//GEN-LAST:event_painelMenuPorcoesMouseEntered
 
     private void painelMenuPorcoesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelMenuPorcoesMouseExited
-
+        painelMenuPorcoes.setBackground(Color.decode("#1A1A1A"));
+        painelMenuPratos.setBackground(Color.decode("#30302F"));
     }//GEN-LAST:event_painelMenuPorcoesMouseExited
+
+    private void ButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonFecharActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_ButtonFecharActionPerformed
+
+    private void buttonAdicionarArroz0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarArroz0ActionPerformed
+        
+    }//GEN-LAST:event_buttonAdicionarArroz0ActionPerformed
 
     /**
      * @param args the command line arguments
