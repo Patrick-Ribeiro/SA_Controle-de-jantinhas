@@ -11,7 +11,7 @@ public class Porcoes {
         return precoPorcoes[posicaoPorcao];
     }
     
-    private static void estadoInicialPrecoPorcoes(){
+    public static void estadoInicialPrecoPorcoes(){
         final double ARROZ = 1F;
         final double CARNE = 3F;
         final double SALADA = 2F;
@@ -19,5 +19,9 @@ public class Porcoes {
         precoPorcoes[0] = ARROZ;
         precoPorcoes[1] = CARNE;
         precoPorcoes[2] = SALADA;
+    }
+    
+    public static void main(String[] args) {
+        estadoInicialPrecoPorcoes();
     }
 }

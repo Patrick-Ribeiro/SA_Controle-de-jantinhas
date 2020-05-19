@@ -3,7 +3,7 @@ package model;
 public class Pratos {
     protected static final int pratos[][] = new int[3][3]; 
    
-    private static void estadoInicialPratos(){       
+    public static void estadoInicialPratos(){       
         final int PRATO1_ARROZ = 2;
         final int PRATO1_CARNE = 1;
         final int PRATO1_SALADA = 1;
@@ -38,5 +38,9 @@ public class Pratos {
             posicaoColunaPrato++;
         }
         return multiplicacao;
+    }
+    
+    public static void main(String[] args) {
+        estadoInicialPratos();
     }
 }
