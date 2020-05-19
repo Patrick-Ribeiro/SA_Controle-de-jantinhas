@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
+import controller.Inicializador;
+import controller.Transmissor;
 import java.awt.Color;
 import javax.swing.JFrame;
 
-/**
- *
- * @author patrick-ribeiro
- */
 public class TelaPratos extends javax.swing.JFrame {
 
     public static TelaPratos telaPratos = new TelaPratos();
@@ -19,6 +12,69 @@ public class TelaPratos extends javax.swing.JFrame {
     
     public TelaPratos() {
         initComponents();
+        iniciarMatrizes();
+        atualizarPrecoPratos();
+    }
+    
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TelaPratos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaPratos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaPratos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaPratos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                telaPratos.setVisible(true);
+            }
+        });
+    }
+    
+    private void iniciarMatrizes(){
+        Inicializador.estadoInicialMatrizes();
+    }
+    
+    private void atualizarPrecoPratos(){
+        atualizarPrecoPrato1();
+        atualizarPrecoPrato2();
+        atualizarPrecoPrato3();
+    }
+    
+    private void atualizarPrecoPrato1(){
+         final int POSICAO_LINHA_PRATO = 0;
+        textoPrecoReais0.setText(Transmissor.getPrecoPratoReais(POSICAO_LINHA_PRATO));
+        textoPrecoMoeda0.setText(Transmissor.getPrecoPratoMoedas(POSICAO_LINHA_PRATO));       
+    }
+    
+    private void atualizarPrecoPrato2(){
+        final int POSICAO_LINHA_PRATO = 1;
+        textoPrecoReais1.setText(Transmissor.getPrecoPratoReais(POSICAO_LINHA_PRATO));
+        textoPrecoMoeda1.setText(Transmissor.getPrecoPratoMoedas(POSICAO_LINHA_PRATO));
+    }
+    
+    private void atualizarPrecoPrato3(){
+        final int POSICAO_LINHA_PRATO = 2;
+        textoPrecoReais2.setText(Transmissor.getPrecoPratoReais(POSICAO_LINHA_PRATO));
+        textoPrecoMoeda2.setText(Transmissor.getPrecoPratoMoedas(POSICAO_LINHA_PRATO));
     }
 
     @SuppressWarnings("unchecked")
@@ -176,7 +232,7 @@ public class TelaPratos extends javax.swing.JFrame {
         painelLateral.setPreferredSize(new java.awt.Dimension(360, 740));
         painelLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        painelMenuPratos.setBackground(new java.awt.Color(26, 26, 26));
+        painelMenuPratos.setBackground(new java.awt.Color(48, 48, 47));
         painelMenuPratos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         painelMenuPratos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -190,7 +246,7 @@ public class TelaPratos extends javax.swing.JFrame {
 
         painelLateral.add(painelMenuPratos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 131, 360, 90));
 
-        painelMenuPorcoes.setBackground(new java.awt.Color(48, 48, 47));
+        painelMenuPorcoes.setBackground(new java.awt.Color(26, 26, 26));
         painelMenuPorcoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         painelMenuPorcoes.setPreferredSize(new java.awt.Dimension(360, 90));
         painelMenuPorcoes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -672,42 +728,6 @@ public class TelaPratos extends javax.swing.JFrame {
         painelMenuPorcoes.setBackground(Color.decode("#30302F"));
         painelMenuPratos.setBackground(Color.decode("#1A1A1A"));
     }//GEN-LAST:event_painelMenuPorcoesMouseEntered
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPratos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPratos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPratos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPratos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                telaPratos.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonFechar;

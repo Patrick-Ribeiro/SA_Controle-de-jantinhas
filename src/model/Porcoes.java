@@ -1,7 +1,7 @@
 package model;
 
 public class Porcoes {
-    protected static final double precoPorcoes[] = new double[3];
+    protected static double precoPorcoes[] = new double[3];
     
     public static void setPrecoPorcao(int posicaoPorcao, double preco){
         precoPorcoes[posicaoPorcao] = preco;

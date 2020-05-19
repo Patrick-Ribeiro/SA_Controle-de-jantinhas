@@ -5,7 +5,7 @@ import model.Pratos;
 
 public class Inicializador {
     
-    public static void estadoInicial(){
+    public static void estadoInicialMatrizes(){
         Pratos.estadoInicialPratos();
         Porcoes.estadoInicialPrecoPorcoes();
     }

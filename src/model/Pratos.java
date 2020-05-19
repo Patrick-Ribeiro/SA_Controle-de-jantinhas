@@ -1,7 +1,7 @@
 package model;
 
 public class Pratos {
-    protected static final int pratos[][] = new int[3][3]; 
+    protected static int pratos[][] = new int[3][3]; 
    
     public static void estadoInicialPratos(){       
         final int PRATO1_ARROZ = 2;
