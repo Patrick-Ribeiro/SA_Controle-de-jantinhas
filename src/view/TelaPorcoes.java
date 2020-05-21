@@ -1,5 +1,6 @@
 package view;
 
+import controller.Receptor;
 import controller.Transmissor;
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -10,6 +11,8 @@ public class TelaPorcoes extends javax.swing.JFrame {
     public TelaPorcoes() {
         initComponents();
         atualizarPrecoPorcoes();
+        buttonCancelarArroz.setVisible(false);
+        buttonConfirmarArroz.setVisible(false);
     }
 
     public static void main(String args[]) {
@@ -53,17 +56,17 @@ public class TelaPorcoes extends javax.swing.JFrame {
     
     private void atualizarPrecoArroz(){
         final int POSICAO_PORCAO = 0;
-        campoValorArroz.setText(Transmissor.getPrecoPorcao(POSICAO_PORCAO));
+        campoValorArroz.setText(Receptor.getPrecoPorcao(POSICAO_PORCAO));
     }
     
     private void atualizarPrecoCarne(){
         final int POSICAO_PORCAO = 1;
-        campoValorCarne.setText(Transmissor.getPrecoPorcao(POSICAO_PORCAO));
+        campoValorCarne.setText(Receptor.getPrecoPorcao(POSICAO_PORCAO));
     }
     
     private void atualizarPrecoSalada(){
         final int POSICAO_PORCAO = 2;
-        campoValorSalada.setText(Transmissor.getPrecoPorcao(POSICAO_PORCAO));
+        campoValorSalada.setText(Receptor.getPrecoPorcao(POSICAO_PORCAO));
     }
 
     @SuppressWarnings("unchecked")
@@ -102,7 +105,9 @@ public class TelaPorcoes extends javax.swing.JFrame {
         iconeCirculoPrato3Arroz = new javax.swing.JLabel();
         iconePrato3Arroz = new javax.swing.JLabel();
         textoPrato3Arroz = new javax.swing.JLabel();
-        painelValorArroz = new javax.swing.JPanel();
+        buttonCancelarArroz = new javax.swing.JButton();
+        buttonConfirmarArroz = new javax.swing.JButton();
+        painelValorCarne1 = new javax.swing.JPanel();
         textoRSArroz = new javax.swing.JLabel();
         campoValorArroz = new javax.swing.JTextField();
         buttonEditarArroz = new javax.swing.JButton();
@@ -221,6 +226,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
 
         painelSuperior.setBackground(new java.awt.Color(167, 14, 19));
         painelSuperior.setPreferredSize(new java.awt.Dimension(1366, 35));
+        painelSuperior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Fechar-26x26.png"))); // NOI18N
         ButtonFechar.setBorder(null);
@@ -238,6 +244,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
                 ButtonFecharActionPerformed(evt);
             }
         });
+        painelSuperior.add(ButtonFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1332, 6, -1, -1));
 
         ButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Minimizar-26x26.png"))); // NOI18N
         ButtonMinimizar.setBorder(null);
@@ -249,27 +256,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
                 ButtonMinimizarActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout painelSuperiorLayout = new javax.swing.GroupLayout(painelSuperior);
-        painelSuperior.setLayout(painelSuperiorLayout);
-        painelSuperiorLayout.setHorizontalGroup(
-            painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelSuperiorLayout.createSequentialGroup()
-                .addContainerGap(1299, Short.MAX_VALUE)
-                .addComponent(ButtonMinimizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ButtonFechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        painelSuperiorLayout.setVerticalGroup(
-            painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelSuperiorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ButtonMinimizar)
-                    .addComponent(ButtonFechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        painelSuperior.add(ButtonMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1299, 7, -1, -1));
 
         getContentPane().add(painelSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
@@ -311,10 +298,15 @@ public class TelaPorcoes extends javax.swing.JFrame {
         painelPrato1Arroz.setPreferredSize(new java.awt.Dimension(140, 140));
         painelPrato1Arroz.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        textoQtdePrato1Arroz.setBackground(new java.awt.Color(242, 242, 235));
         textoQtdePrato1Arroz.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         textoQtdePrato1Arroz.setForeground(new java.awt.Color(255, 255, 255));
+        textoQtdePrato1Arroz.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoQtdePrato1Arroz.setText("1");
-        painelPrato1Arroz.add(textoQtdePrato1Arroz, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 77, -1, -1));
+        textoQtdePrato1Arroz.setMaximumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato1Arroz.setMinimumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato1Arroz.setPreferredSize(new java.awt.Dimension(18, 21));
+        painelPrato1Arroz.add(textoQtdePrato1Arroz, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 77, -1, -1));
 
         iconeCirculoPrato1Arroz.setBackground(new java.awt.Color(47, 47, 235));
         iconeCirculoPrato1Arroz.setForeground(new java.awt.Color(255, 255, 255));
@@ -335,10 +327,15 @@ public class TelaPorcoes extends javax.swing.JFrame {
         painelPrato2Arroz.setPreferredSize(new java.awt.Dimension(140, 140));
         painelPrato2Arroz.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        textoQtdePrato2Arroz.setBackground(new java.awt.Color(242, 242, 235));
         textoQtdePrato2Arroz.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         textoQtdePrato2Arroz.setForeground(new java.awt.Color(255, 255, 255));
+        textoQtdePrato2Arroz.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoQtdePrato2Arroz.setText("5");
-        painelPrato2Arroz.add(textoQtdePrato2Arroz, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 77, -1, -1));
+        textoQtdePrato2Arroz.setMaximumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato2Arroz.setMinimumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato2Arroz.setPreferredSize(new java.awt.Dimension(18, 21));
+        painelPrato2Arroz.add(textoQtdePrato2Arroz, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 77, -1, -1));
 
         iconeCirculoPrato2Arroz.setBackground(new java.awt.Color(47, 47, 235));
         iconeCirculoPrato2Arroz.setForeground(new java.awt.Color(255, 255, 255));
@@ -359,10 +356,15 @@ public class TelaPorcoes extends javax.swing.JFrame {
         painelPrato3Arroz.setPreferredSize(new java.awt.Dimension(140, 140));
         painelPrato3Arroz.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        textoQtdePrato3Arroz.setBackground(new java.awt.Color(242, 242, 235));
         textoQtdePrato3Arroz.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         textoQtdePrato3Arroz.setForeground(new java.awt.Color(255, 255, 255));
+        textoQtdePrato3Arroz.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoQtdePrato3Arroz.setText("9");
-        painelPrato3Arroz.add(textoQtdePrato3Arroz, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 77, -1, -1));
+        textoQtdePrato3Arroz.setMaximumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato3Arroz.setMinimumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato3Arroz.setPreferredSize(new java.awt.Dimension(18, 21));
+        painelPrato3Arroz.add(textoQtdePrato3Arroz, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 77, -1, -1));
 
         iconeCirculoPrato3Arroz.setBackground(new java.awt.Color(47, 47, 235));
         iconeCirculoPrato3Arroz.setForeground(new java.awt.Color(255, 255, 255));
@@ -379,49 +381,75 @@ public class TelaPorcoes extends javax.swing.JFrame {
 
         painelArroz.add(painelPrato3Arroz, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 120, 130));
 
-        painelValorArroz.setBackground(new java.awt.Color(242, 242, 235));
+        buttonCancelarArroz.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icone-Cancelar-30x30.png"))); // NOI18N
+        buttonCancelarArroz.setBorder(null);
+        buttonCancelarArroz.setBorderPainted(false);
+        buttonCancelarArroz.setContentAreaFilled(false);
+        buttonCancelarArroz.setOpaque(true);
+        buttonCancelarArroz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarArrozActionPerformed(evt);
+            }
+        });
+        painelArroz.add(buttonCancelarArroz, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 190, -1, -1));
+
+        buttonConfirmarArroz.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Confirmar-30x30.png"))); // NOI18N
+        buttonConfirmarArroz.setBorder(null);
+        buttonConfirmarArroz.setBorderPainted(false);
+        buttonConfirmarArroz.setContentAreaFilled(false);
+        buttonConfirmarArroz.setOpaque(true);
+        painelArroz.add(buttonConfirmarArroz, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 190, -1, -1));
+
+        painelValorCarne1.setBackground(new java.awt.Color(242, 242, 235));
 
         textoRSArroz.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         textoRSArroz.setForeground(new java.awt.Color(26, 26, 26));
         textoRSArroz.setText("R$");
 
+        campoValorArroz.setEditable(false);
         campoValorArroz.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         campoValorArroz.setForeground(new java.awt.Color(26, 26, 26));
         campoValorArroz.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campoValorArroz.setText("1,00");
         campoValorArroz.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(26, 26, 26), 2));
 
-        buttonEditarArroz.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Editar-35x35.png"))); // NOI18N
+        buttonEditarArroz.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Editar-30x30.png"))); // NOI18N
         buttonEditarArroz.setBorderPainted(false);
         buttonEditarArroz.setContentAreaFilled(false);
+        buttonEditarArroz.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonEditarArroz.setPreferredSize(new java.awt.Dimension(36, 36));
+        buttonEditarArroz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditarArrozActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout painelValorArrozLayout = new javax.swing.GroupLayout(painelValorArroz);
-        painelValorArroz.setLayout(painelValorArrozLayout);
-        painelValorArrozLayout.setHorizontalGroup(
-            painelValorArrozLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelValorArrozLayout.createSequentialGroup()
+        javax.swing.GroupLayout painelValorCarne1Layout = new javax.swing.GroupLayout(painelValorCarne1);
+        painelValorCarne1.setLayout(painelValorCarne1Layout);
+        painelValorCarne1Layout.setHorizontalGroup(
+            painelValorCarne1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelValorCarne1Layout.createSequentialGroup()
                 .addComponent(textoRSArroz)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoValorArroz, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoValorArroz, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonEditarArroz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        painelValorArrozLayout.setVerticalGroup(
-            painelValorArrozLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelValorArrozLayout.createSequentialGroup()
+        painelValorCarne1Layout.setVerticalGroup(
+            painelValorCarne1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelValorCarne1Layout.createSequentialGroup()
                 .addComponent(textoRSArroz)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelValorArrozLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelValorCarne1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(painelValorArrozLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painelValorCarne1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonEditarArroz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoValorArroz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        painelArroz.add(painelValorArroz, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 140, 190, -1));
+        painelArroz.add(painelValorCarne1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, 210, 50));
 
         painelCentral.add(painelArroz, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
 
@@ -459,10 +487,15 @@ public class TelaPorcoes extends javax.swing.JFrame {
         painelPrato1Carne.setPreferredSize(new java.awt.Dimension(140, 140));
         painelPrato1Carne.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        textoQtdePrato1Carne.setBackground(new java.awt.Color(242, 242, 235));
         textoQtdePrato1Carne.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         textoQtdePrato1Carne.setForeground(new java.awt.Color(255, 255, 255));
+        textoQtdePrato1Carne.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoQtdePrato1Carne.setText("1");
-        painelPrato1Carne.add(textoQtdePrato1Carne, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 77, -1, -1));
+        textoQtdePrato1Carne.setMaximumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato1Carne.setMinimumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato1Carne.setPreferredSize(new java.awt.Dimension(18, 21));
+        painelPrato1Carne.add(textoQtdePrato1Carne, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 77, -1, -1));
 
         iconeCirculoPrato1Carne.setBackground(new java.awt.Color(47, 47, 235));
         iconeCirculoPrato1Carne.setForeground(new java.awt.Color(255, 255, 255));
@@ -483,10 +516,15 @@ public class TelaPorcoes extends javax.swing.JFrame {
         painelPrato2Carne.setPreferredSize(new java.awt.Dimension(140, 140));
         painelPrato2Carne.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        textoQtdePrato2Carne.setBackground(new java.awt.Color(242, 242, 235));
         textoQtdePrato2Carne.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         textoQtdePrato2Carne.setForeground(new java.awt.Color(255, 255, 255));
+        textoQtdePrato2Carne.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoQtdePrato2Carne.setText("5");
-        painelPrato2Carne.add(textoQtdePrato2Carne, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 77, -1, -1));
+        textoQtdePrato2Carne.setMaximumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato2Carne.setMinimumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato2Carne.setPreferredSize(new java.awt.Dimension(18, 21));
+        painelPrato2Carne.add(textoQtdePrato2Carne, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 77, -1, -1));
 
         iconeCirculoPrato2Carne.setBackground(new java.awt.Color(47, 47, 235));
         iconeCirculoPrato2Carne.setForeground(new java.awt.Color(255, 255, 255));
@@ -507,10 +545,15 @@ public class TelaPorcoes extends javax.swing.JFrame {
         painelPrato3Carne.setPreferredSize(new java.awt.Dimension(140, 140));
         painelPrato3Carne.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        textoQtdePrato3Carne.setBackground(new java.awt.Color(242, 242, 235));
         textoQtdePrato3Carne.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         textoQtdePrato3Carne.setForeground(new java.awt.Color(255, 255, 255));
+        textoQtdePrato3Carne.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoQtdePrato3Carne.setText("9");
-        painelPrato3Carne.add(textoQtdePrato3Carne, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 77, -1, -1));
+        textoQtdePrato3Carne.setMaximumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato3Carne.setMinimumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato3Carne.setPreferredSize(new java.awt.Dimension(18, 21));
+        painelPrato3Carne.add(textoQtdePrato3Carne, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 77, -1, -1));
 
         iconeCirculoPrato3Carne.setBackground(new java.awt.Color(47, 47, 235));
         iconeCirculoPrato3Carne.setForeground(new java.awt.Color(255, 255, 255));
@@ -538,11 +581,18 @@ public class TelaPorcoes extends javax.swing.JFrame {
         campoValorCarne.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campoValorCarne.setText("1,00");
         campoValorCarne.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(26, 26, 26), 2));
+        campoValorCarne.setEnabled(false);
 
         buttonEditarCarne.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Editar-35x35.png"))); // NOI18N
         buttonEditarCarne.setBorderPainted(false);
         buttonEditarCarne.setContentAreaFilled(false);
+        buttonEditarCarne.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonEditarCarne.setPreferredSize(new java.awt.Dimension(36, 36));
+        buttonEditarCarne.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditarCarneActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelValorCarneLayout = new javax.swing.GroupLayout(painelValorCarne);
         painelValorCarne.setLayout(painelValorCarneLayout);
@@ -551,10 +601,10 @@ public class TelaPorcoes extends javax.swing.JFrame {
             .addGroup(painelValorCarneLayout.createSequentialGroup()
                 .addComponent(textoRSCarne)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoValorCarne, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoValorCarne, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonEditarCarne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addContainerGap())
         );
         painelValorCarneLayout.setVerticalGroup(
             painelValorCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -569,7 +619,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        painelCarne.add(painelValorCarne, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 140, 190, -1));
+        painelCarne.add(painelValorCarne, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, 220, -1));
 
         painelCentral.add(painelCarne, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
@@ -607,10 +657,15 @@ public class TelaPorcoes extends javax.swing.JFrame {
         painelPrato1Salada.setPreferredSize(new java.awt.Dimension(140, 140));
         painelPrato1Salada.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        textoQtdePrato1Salada.setBackground(new java.awt.Color(242, 242, 235));
         textoQtdePrato1Salada.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         textoQtdePrato1Salada.setForeground(new java.awt.Color(255, 255, 255));
+        textoQtdePrato1Salada.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoQtdePrato1Salada.setText("1");
-        painelPrato1Salada.add(textoQtdePrato1Salada, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 77, -1, -1));
+        textoQtdePrato1Salada.setMaximumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato1Salada.setMinimumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato1Salada.setPreferredSize(new java.awt.Dimension(18, 21));
+        painelPrato1Salada.add(textoQtdePrato1Salada, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 77, -1, -1));
 
         iconeCirculoPrato1Salada.setBackground(new java.awt.Color(47, 47, 235));
         iconeCirculoPrato1Salada.setForeground(new java.awt.Color(255, 255, 255));
@@ -631,10 +686,15 @@ public class TelaPorcoes extends javax.swing.JFrame {
         painelPrato2Salada.setPreferredSize(new java.awt.Dimension(140, 140));
         painelPrato2Salada.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        textoQtdePrato2Salada.setBackground(new java.awt.Color(242, 242, 235));
         textoQtdePrato2Salada.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         textoQtdePrato2Salada.setForeground(new java.awt.Color(255, 255, 255));
+        textoQtdePrato2Salada.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoQtdePrato2Salada.setText("5");
-        painelPrato2Salada.add(textoQtdePrato2Salada, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 77, -1, -1));
+        textoQtdePrato2Salada.setMaximumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato2Salada.setMinimumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato2Salada.setPreferredSize(new java.awt.Dimension(18, 21));
+        painelPrato2Salada.add(textoQtdePrato2Salada, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 77, -1, -1));
 
         iconeCirculoPrato2Salada.setBackground(new java.awt.Color(47, 47, 235));
         iconeCirculoPrato2Salada.setForeground(new java.awt.Color(255, 255, 255));
@@ -655,10 +715,15 @@ public class TelaPorcoes extends javax.swing.JFrame {
         painelPrato3Salada.setPreferredSize(new java.awt.Dimension(140, 140));
         painelPrato3Salada.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        textoQtdePrato3Salada.setBackground(new java.awt.Color(242, 242, 235));
         textoQtdePrato3Salada.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         textoQtdePrato3Salada.setForeground(new java.awt.Color(255, 255, 255));
+        textoQtdePrato3Salada.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoQtdePrato3Salada.setText("9");
-        painelPrato3Salada.add(textoQtdePrato3Salada, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 77, -1, -1));
+        textoQtdePrato3Salada.setMaximumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato3Salada.setMinimumSize(new java.awt.Dimension(18, 21));
+        textoQtdePrato3Salada.setPreferredSize(new java.awt.Dimension(18, 21));
+        painelPrato3Salada.add(textoQtdePrato3Salada, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 77, -1, -1));
 
         iconeCirculoPrato3Salada.setBackground(new java.awt.Color(47, 47, 235));
         iconeCirculoPrato3Salada.setForeground(new java.awt.Color(255, 255, 255));
@@ -686,10 +751,12 @@ public class TelaPorcoes extends javax.swing.JFrame {
         campoValorSalada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campoValorSalada.setText("1,00");
         campoValorSalada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(26, 26, 26), 2));
+        campoValorSalada.setEnabled(false);
 
         buttonEditarSalada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Editar-35x35.png"))); // NOI18N
         buttonEditarSalada.setBorderPainted(false);
         buttonEditarSalada.setContentAreaFilled(false);
+        buttonEditarSalada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonEditarSalada.setPreferredSize(new java.awt.Dimension(36, 36));
 
         javax.swing.GroupLayout painelValorSaladaLayout = new javax.swing.GroupLayout(painelValorSalada);
@@ -699,10 +766,10 @@ public class TelaPorcoes extends javax.swing.JFrame {
             .addGroup(painelValorSaladaLayout.createSequentialGroup()
                 .addComponent(textoRSSalada)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoValorSalada, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoValorSalada, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonEditarSalada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addContainerGap())
         );
         painelValorSaladaLayout.setVerticalGroup(
             painelValorSaladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -717,7 +784,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        painelSalada.add(painelValorSalada, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 140, 190, -1));
+        painelSalada.add(painelValorSalada, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, 220, -1));
 
         painelCentral.add(painelSalada, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, -1));
 
@@ -766,10 +833,27 @@ public class TelaPorcoes extends javax.swing.JFrame {
         painelMenuPorcoes.setBackground(Color.decode("#30302F"));
     }//GEN-LAST:event_painelMenuPratosMouseExited
 
+    private void buttonEditarCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarCarneActionPerformed
+        buttonEditarCarne.setVisible(false);
+    }//GEN-LAST:event_buttonEditarCarneActionPerformed
+
+    private void buttonEditarArrozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarArrozActionPerformed
+        campoValorArroz.setEditable(true);
+        buttonEditarArroz.setVisible(false);
+        buttonCancelarArroz.setVisible(true);
+        buttonConfirmarArroz.setVisible(true);        
+    }//GEN-LAST:event_buttonEditarArrozActionPerformed
+
+    private void buttonCancelarArrozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarArrozActionPerformed
+        buttonEditarArroz.setVisible(true);
+    }//GEN-LAST:event_buttonCancelarArrozActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonFechar;
     private javax.swing.JButton ButtonMinimizar;
+    private javax.swing.JButton buttonCancelarArroz;
+    private javax.swing.JButton buttonConfirmarArroz;
     private javax.swing.JButton buttonEditarArroz;
     private javax.swing.JButton buttonEditarCarne;
     private javax.swing.JButton buttonEditarSalada;
@@ -825,8 +909,8 @@ public class TelaPorcoes extends javax.swing.JFrame {
     private javax.swing.JPanel painelTituloArroz;
     private javax.swing.JPanel painelTituloCarne;
     private javax.swing.JPanel painelTituloSalada;
-    private javax.swing.JPanel painelValorArroz;
     private javax.swing.JPanel painelValorCarne;
+    private javax.swing.JPanel painelValorCarne1;
     private javax.swing.JPanel painelValorSalada;
     private javax.swing.JLabel textoArroz;
     private javax.swing.JLabel textoCarne;

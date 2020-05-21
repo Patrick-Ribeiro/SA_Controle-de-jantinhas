@@ -3,15 +3,15 @@ package model;
 public class Porcoes {
     protected static double precoPorcoes[] = new double[3];
     
-    public static void setPrecoPorcao(int posicaoPorcao, double preco){
-        precoPorcoes[posicaoPorcao] = preco;
+    public static void setPrecoPorcao(int posicaoPorcao, double novoPreco){
+        precoPorcoes[posicaoPorcao] = novoPreco;
     }
     
     public static double getPrecoPorcao(int posicaoPorcao){
         return precoPorcoes[posicaoPorcao];
     }
     
-    public static void estadoInicialPrecoPorcoes(){
+    public static void estadoInicial(){
         final double ARROZ = 1F;
         final double CARNE = 3F;
         final double SALADA = 2F;
@@ -21,7 +21,4 @@ public class Porcoes {
         precoPorcoes[2] = SALADA;
     }
     
-    public static void main(String[] args) {
-        estadoInicialPrecoPorcoes();
-    }
 }

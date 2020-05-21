@@ -4,18 +4,20 @@ import model.Pratos;
 
 public class Transmissor {
     
-    public static String getPrecoPratoReais(int posicaoLinhaPrato){
-        int valorReais = Conversor.modReais(Pratos.getPreco(posicaoLinhaPrato));
-        return String.valueOf(valorReais);
+    public static void iniciarArrays(){
+        Pratos.estadoInicial();
+        Porcoes.estadoInicial();
     }
     
-    public static String getPrecoPratoMoedas(int posicaoLinhaPrato){
-        int valorCentavos = Conversor.modCentavos(Pratos.getPreco(posicaoLinhaPrato));
-        return String.valueOf(valorCentavos);
+    public static void addPorcao(int posicaoLinhaPrato, int posicaoPorcao){
+        int qtde = 1;
+        Pratos.addPorcao(posicaoLinhaPrato, posicaoPorcao, qtde);
     }
     
-    public static String getPrecoPorcao(int posicaoPorcao){
-        String precoPorcao = String.format("%.2f", Porcoes.getPrecoPorcao(posicaoPorcao));
-        return precoPorcao;
+    public static void removePorcao(int posicaoLinhaPrato, int posicaoPorcao){
+        int qtde = 1;
+        Pratos.removePorcao(posicaoLinhaPrato, posicaoPorcao, qtde);
     }
+    
+    
 }

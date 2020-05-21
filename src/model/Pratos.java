@@ -3,7 +3,18 @@ package model;
 public class Pratos {
     protected static int pratos[][] = new int[3][3]; 
    
-    public static void estadoInicialPratos(){       
+    public static void addPorcao(int posicaoLinhaPrato, int posicaoPorcao, int qtde){
+        pratos[posicaoLinhaPrato][posicaoPorcao] += qtde;
+    }
+
+    public static void removePorcao(int posicaoLinhaPrato, int posicaoPorcao, int qtde){
+        pratos[posicaoLinhaPrato][posicaoPorcao] -= qtde;
+    }
+
+    public static int getQtdePorcao(int posicaoLinhaPrato, int posicaoPorcao){
+        return pratos[posicaoLinhaPrato][posicaoPorcao];
+    }
+    public static void estadoInicial(){       
         final int PRATO1_ARROZ = 2;
         final int PRATO1_CARNE = 1;
         final int PRATO1_SALADA = 1;
@@ -38,9 +49,5 @@ public class Pratos {
             posicaoColunaPrato++;
         }
         return multiplicacao;
-    }
-    
-    public static void main(String[] args) {
-        estadoInicialPratos();
     }
 }
