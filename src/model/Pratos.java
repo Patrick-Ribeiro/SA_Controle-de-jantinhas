@@ -14,6 +14,18 @@ public class Pratos {
     public static int getQtdePorcao(int posicaoLinhaPrato, int posicaoPorcao){
         return pratos[posicaoLinhaPrato][posicaoPorcao];
     }
+    
+    public static double getPreco(int posicaoLinhaPrato){
+        double multiplicacao = 0;
+        int posicaoColunaPrato = 0;
+        
+        for(int posicaoPorcao=0; posicaoPorcao<Porcoes.precoPorcoes.length; posicaoPorcao++){
+            multiplicacao += Porcoes.precoPorcoes[posicaoPorcao] * pratos[posicaoLinhaPrato][posicaoColunaPrato];
+            posicaoColunaPrato++;
+        }
+        return multiplicacao;
+    }
+    
     public static void estadoInicial(){       
         final int PRATO1_ARROZ = 2;
         final int PRATO1_CARNE = 1;
@@ -38,16 +50,5 @@ public class Pratos {
         pratos[2][0] = PRATO3_ARROZ;
         pratos[2][1] = PRATO3_CARNE;
         pratos[2][2] = PRATO3_SALADA;
-    }
-    
-    public static double getPreco(int posicaoLinhaPrato){
-        double multiplicacao = 0;
-        int posicaoColunaPrato = 0;
-        
-        for(int posicaoPorcao=0; posicaoPorcao<Porcoes.precoPorcoes.length; posicaoPorcao++){
-            multiplicacao += Porcoes.precoPorcoes[posicaoPorcao] * pratos[posicaoLinhaPrato][posicaoColunaPrato];
-            posicaoColunaPrato++;
-        }
-        return multiplicacao;
     }
 }

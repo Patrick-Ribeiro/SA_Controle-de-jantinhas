@@ -54,7 +54,7 @@ public class TelaPratos extends javax.swing.JFrame {
         Transmissor.iniciarArrays();
     }
     
-    private void atualizarPrecoPratos(){
+    protected void atualizarPrecoPratos(){
         atualizarPrecoPrato1();
         atualizarPrecoPrato2();
         atualizarPrecoPrato3();
