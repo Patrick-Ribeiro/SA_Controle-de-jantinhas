@@ -10,12 +10,18 @@ import static view.TelaPratos.telaPratos;
 public class TelaPorcoes extends javax.swing.JFrame {
 
     private static String precoAtualArroz;
+    private static String precoAtualCarne;
+    private static String precoAtualSalada;
+    private static boolean modoEdicaoArroz;
+    private static boolean modoEdicaoCarne;
+    private static boolean modoEdicaoSalada;
 
     public TelaPorcoes() {
         initComponents();
         atualizarPrecoPorcoes();
         atualizarQtdePorcoes();
-        esconderBotoes();
+        esconderBotoesEdicao();
+        destivarCampos();
     }
 
     public static void main(String args[]) {
@@ -51,7 +57,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
         });
     }
 
-    private void atualizarPrecoPorcoes() {
+    protected final void atualizarPrecoPorcoes() {
         atualizarPrecoArroz();
         atualizarPrecoCarne();
         atualizarPrecoSalada();
@@ -63,7 +69,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
         atualizarQtdeSalada();
     }
 
-    private void esconderBotoes() {
+    private void esconderBotoesEdicao() {
         buttonCancelarArroz.setVisible(false);
         buttonConfirmarArroz.setVisible(false);
 
@@ -76,8 +82,8 @@ public class TelaPorcoes extends javax.swing.JFrame {
 
     private void destivarCampos() {
         textFieldPrecoArroz.setEditable(false);
-        campoValorCarne.setEditable(false);
-        campoValorSalada.setEditable(false);
+        textFieldPrecoCarne.setEditable(false);
+        textFieldPrecoSalada.setEditable(false);
     }
 
     private void atualizarQtdeArroz() {
@@ -108,81 +114,150 @@ public class TelaPorcoes extends javax.swing.JFrame {
 
     private void atualizarPrecoCarne() {
         final int POSICAO_PORCAO = 1;
-        campoValorCarne.setText(Receptor.getPrecoPorcao(POSICAO_PORCAO));
+        textFieldPrecoCarne.setText(Receptor.getPrecoPorcao(POSICAO_PORCAO));
     }
 
     private void atualizarPrecoSalada() {
         final int POSICAO_PORCAO = 2;
-        campoValorSalada.setText(Receptor.getPrecoPorcao(POSICAO_PORCAO));
+        textFieldPrecoSalada.setText(Receptor.getPrecoPorcao(POSICAO_PORCAO));
     }
 
-    private String getPrecoAtualArroz() {
+    private String getPrecoTextFieldArroz() {
         return textFieldPrecoArroz.getText();
+    }
+
+    private String getPrecoTextFieldCarne() {
+        return textFieldPrecoCarne.getText();
+    }
+
+    private String getPrecoTextFieldSalada() {
+        return textFieldPrecoSalada.getText();
     }
 
     private void desfazerAlteracoes() {
         textFieldPrecoArroz.setText(precoAtualArroz);
     }
 
-    private void modoEdicaoArroz(boolean ativado) {
+    private void esconderTelaPorcoes() {
+        this.setVisible(false);
+        setModoEdicaoArroz(false);
+        setModoEdicaoCarne(false);
+        setModoEdicaoSalada(false);
+    }
+
+    private void mostrarTelaPratos() {
+        if (getModoEdicaoArroz() || getModoEdicaoCarne() || getModoEdicaoSalada()) {
+            if (confirmarSaida()) {
+                telaPratos.setVisible(true);
+                esconderTelaPorcoes();
+            }
+        } else {
+            telaPratos.setVisible(true);
+            esconderTelaPorcoes();
+        }
+    }
+
+    private boolean confirmarSaida() {
+        int resposta = JOptionPane.showConfirmDialog(null, "Ao trocar de tela você perderá a edição da porção. Deseja mesmo sair?",
+                "Controle de Jantinhas", JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.YES_OPTION) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected boolean getModoEdicaoArroz() {
+        return modoEdicaoArroz;
+    }
+
+    protected boolean getModoEdicaoCarne() {
+        return modoEdicaoCarne;
+    }
+
+    protected boolean getModoEdicaoSalada() {
+        return modoEdicaoSalada;
+    }
+
+    private void setModoEdicaoArroz(boolean ativado) {
         if (ativado) {
             buttonEditarArroz.setVisible(false);
-            buttonCancelarArroz.setVisible(true);
-            buttonConfirmarArroz.setVisible(true);
-            textFieldPrecoArroz.setEditable(true);
-            precoAtualArroz = getPrecoAtualArroz();
+            precoAtualArroz = getPrecoTextFieldArroz();
         } else {
             buttonEditarArroz.setVisible(true);
-            buttonCancelarArroz.setVisible(false);
-            buttonConfirmarArroz.setVisible(false);
-            textFieldPrecoArroz.setEditable(false);
         }
+        modoEdicaoArroz = ativado;
+        buttonCancelarArroz.setVisible(ativado);
+        buttonConfirmarArroz.setVisible(ativado);
+        textFieldPrecoArroz.setEditable(ativado);
     }
 
-    private void modoEdicaoCarne(boolean ativado) {
+    private void setModoEdicaoCarne(boolean ativado) {
         if (ativado) {
             buttonEditarCarne.setVisible(false);
-            buttonCancelarCarne.setVisible(true);
-            buttonConfirmarCarne.setVisible(true);
-            campoValorCarne.setEditable(true);
+            precoAtualCarne = getPrecoTextFieldCarne();
         } else {
             buttonEditarCarne.setVisible(true);
-            buttonCancelarCarne.setVisible(false);
-            buttonConfirmarCarne.setVisible(false);
-            campoValorCarne.setEditable(false);
         }
+        modoEdicaoCarne = ativado;
+        buttonCancelarCarne.setVisible(ativado);
+        buttonConfirmarCarne.setVisible(ativado);
+        textFieldPrecoCarne.setEditable(ativado);
     }
 
-    private void modoEdicaoSalada(boolean ativado) {
+    private void setModoEdicaoSalada(boolean ativado) {
         if (ativado) {
             buttonEditarSalada.setVisible(false);
-            buttonCancelarSalada.setVisible(true);
-            buttonConfirmarSalada.setVisible(true);
-            campoValorSalada.setEditable(true);
+            precoAtualSalada = getPrecoTextFieldSalada();
         } else {
             buttonEditarSalada.setVisible(true);
-            buttonCancelarSalada.setVisible(false);
-            buttonConfirmarSalada.setVisible(false);
-            campoValorSalada.setEditable(false);
         }
+        modoEdicaoSalada = ativado;
+        buttonCancelarSalada.setVisible(ativado);
+        buttonConfirmarSalada.setVisible(ativado);
+        textFieldPrecoSalada.setEditable(ativado);
     }
 
     private void setPrecoArroz(String preco) {
         if (!textFieldPrecoArroz.getText().equals(precoAtualArroz)) {
-            int retorno = Transmissor.setPrecoPorcao(0, preco);
-            switch (retorno) {
-                case 1:
-                    modoEdicaoArroz(false);
-                    JOptionPane.showMessageDialog(null, "Preço da porção alterado", "Alteração de preço da porção", JOptionPane.INFORMATION_MESSAGE);
-                    telaPratos.atualizarPrecoPratos();
-                    break;
-                case 0:
-                    JOptionPane.showMessageDialog(null, "Formato de preço inválido", "Erro no novo preço", JOptionPane.ERROR_MESSAGE);
-                    break;
-            }
-        }else{
+            enviarNovoPreco(0, preco);
+        } else {
             JOptionPane.showMessageDialog(null, "O preço da porção não foi alterado", "Alteração de preço da porção", JOptionPane.INFORMATION_MESSAGE);
-            modoEdicaoArroz(false);
+            setModoEdicaoArroz(false);
+        }
+    }
+
+    private void setPrecoCarne(String preco) {
+        if (!textFieldPrecoCarne.getText().equals(precoAtualCarne)) {
+            enviarNovoPreco(1, preco);
+        } else {
+            JOptionPane.showMessageDialog(null, "O preço da porção não foi alterado", "Alteração de preço da porção", JOptionPane.INFORMATION_MESSAGE);
+            setModoEdicaoCarne(false);
+        }
+    }
+
+    private void setPrecoSalada(String preco) {
+        if (!textFieldPrecoSalada.getText().equals(precoAtualSalada)) {
+            enviarNovoPreco(2, preco);
+        } else {
+            JOptionPane.showMessageDialog(null, "O preço da porção não foi alterado", "Alteração de preço da porção", JOptionPane.INFORMATION_MESSAGE);
+            setModoEdicaoSalada(false);
+        }
+    }
+
+    private void enviarNovoPreco(int posicaoPorcao, String preco) {
+        int retorno = Transmissor.setPrecoPorcao(posicaoPorcao, preco);
+        switch (retorno) {
+            case 1: //Sucesso
+                setModoEdicaoArroz(false);
+                setModoEdicaoCarne(false);
+                setModoEdicaoSalada(false);
+                JOptionPane.showMessageDialog(null, "Preço da porção alterado", "Alteração de preço da porção", JOptionPane.INFORMATION_MESSAGE);
+                telaPratos.atualizarPrecoPratos();
+                break;
+            case 0: //Falha
+                JOptionPane.showMessageDialog(null, "Formato de preço inválido", "Erro no novo preço", JOptionPane.ERROR_MESSAGE);
+                break;
         }
     }
 
@@ -198,8 +273,9 @@ public class TelaPorcoes extends javax.swing.JFrame {
         iconeMenuPorcoes = new javax.swing.JLabel();
         textoMenuPorcoes = new javax.swing.JLabel();
         painelSuperior = new javax.swing.JPanel();
-        ButtonFechar = new javax.swing.JButton();
-        ButtonMinimizar = new javax.swing.JButton();
+        buttonFechar = new javax.swing.JButton();
+        buttonMinimizar = new javax.swing.JButton();
+        labelTitulo = new javax.swing.JLabel();
         painelCentral = new javax.swing.JPanel();
         painelArroz = new javax.swing.JPanel();
         painelTituloArroz = new javax.swing.JPanel();
@@ -251,7 +327,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
         textoPrato3Carne = new javax.swing.JLabel();
         painelValorCarne = new javax.swing.JPanel();
         labelRsCarne = new javax.swing.JLabel();
-        campoValorCarne = new javax.swing.JTextField();
+        textFieldPrecoCarne = new javax.swing.JTextField();
         buttonEditarCarne = new javax.swing.JButton();
         buttonCancelarCarne = new javax.swing.JButton();
         buttonConfirmarCarne = new javax.swing.JButton();
@@ -278,12 +354,13 @@ public class TelaPorcoes extends javax.swing.JFrame {
         textoPrato3Salada = new javax.swing.JLabel();
         painelValorSalada = new javax.swing.JPanel();
         labelRsSalada = new javax.swing.JLabel();
-        campoValorSalada = new javax.swing.JTextField();
+        textFieldPrecoSalada = new javax.swing.JTextField();
         buttonEditarSalada = new javax.swing.JButton();
         buttonCancelarSalada = new javax.swing.JButton();
         buttonConfirmarSalada = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Controle de Jantinhas");
         setUndecorated(true);
         setSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -349,35 +426,41 @@ public class TelaPorcoes extends javax.swing.JFrame {
         painelSuperior.setPreferredSize(new java.awt.Dimension(1366, 35));
         painelSuperior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Fechar-26x26.png"))); // NOI18N
-        ButtonFechar.setBorder(null);
-        ButtonFechar.setBorderPainted(false);
-        ButtonFechar.setContentAreaFilled(false);
-        ButtonFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ButtonFechar.setPreferredSize(new java.awt.Dimension(28, 28));
-        ButtonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Fechar-26x26.png"))); // NOI18N
+        buttonFechar.setBorder(null);
+        buttonFechar.setBorderPainted(false);
+        buttonFechar.setContentAreaFilled(false);
+        buttonFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonFechar.setPreferredSize(new java.awt.Dimension(28, 28));
+        buttonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ButtonFecharMouseClicked(evt);
+                buttonFecharMouseClicked(evt);
             }
         });
-        ButtonFechar.addActionListener(new java.awt.event.ActionListener() {
+        buttonFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonFecharActionPerformed(evt);
+                buttonFecharActionPerformed(evt);
             }
         });
-        painelSuperior.add(ButtonFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1332, 6, -1, -1));
+        painelSuperior.add(buttonFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1332, 6, -1, -1));
 
-        ButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Minimizar-26x26.png"))); // NOI18N
-        ButtonMinimizar.setBorder(null);
-        ButtonMinimizar.setBorderPainted(false);
-        ButtonMinimizar.setContentAreaFilled(false);
-        ButtonMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ButtonMinimizar.addActionListener(new java.awt.event.ActionListener() {
+        buttonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Minimizar-26x26.png"))); // NOI18N
+        buttonMinimizar.setBorder(null);
+        buttonMinimizar.setBorderPainted(false);
+        buttonMinimizar.setContentAreaFilled(false);
+        buttonMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonMinimizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonMinimizarActionPerformed(evt);
+                buttonMinimizarActionPerformed(evt);
             }
         });
-        painelSuperior.add(ButtonMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1299, 7, -1, -1));
+        painelSuperior.add(buttonMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1299, 7, -1, -1));
+
+        labelTitulo.setBackground(new java.awt.Color(242, 242, 235));
+        labelTitulo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        labelTitulo.setForeground(new java.awt.Color(242, 242, 235));
+        labelTitulo.setText("Controle de Jantinhas");
+        painelSuperior.add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         getContentPane().add(painelSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
@@ -705,12 +788,12 @@ public class TelaPorcoes extends javax.swing.JFrame {
         labelRsCarne.setForeground(new java.awt.Color(26, 26, 26));
         labelRsCarne.setText("R$");
 
-        campoValorCarne.setEditable(false);
-        campoValorCarne.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        campoValorCarne.setForeground(new java.awt.Color(26, 26, 26));
-        campoValorCarne.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        campoValorCarne.setText("1,00");
-        campoValorCarne.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(26, 26, 26), 2));
+        textFieldPrecoCarne.setEditable(false);
+        textFieldPrecoCarne.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        textFieldPrecoCarne.setForeground(new java.awt.Color(26, 26, 26));
+        textFieldPrecoCarne.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textFieldPrecoCarne.setText("1,00");
+        textFieldPrecoCarne.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(26, 26, 26), 2));
 
         buttonEditarCarne.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Editar-30x30.png"))); // NOI18N
         buttonEditarCarne.setBorderPainted(false);
@@ -730,7 +813,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
             .addGroup(painelValorCarneLayout.createSequentialGroup()
                 .addComponent(labelRsCarne)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoValorCarne, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                .addComponent(textFieldPrecoCarne, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonEditarCarne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -744,7 +827,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelValorCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonEditarCarne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoValorCarne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldPrecoCarne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -901,12 +984,12 @@ public class TelaPorcoes extends javax.swing.JFrame {
         labelRsSalada.setForeground(new java.awt.Color(26, 26, 26));
         labelRsSalada.setText("R$");
 
-        campoValorSalada.setEditable(false);
-        campoValorSalada.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        campoValorSalada.setForeground(new java.awt.Color(26, 26, 26));
-        campoValorSalada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        campoValorSalada.setText("1,00");
-        campoValorSalada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(26, 26, 26), 2));
+        textFieldPrecoSalada.setEditable(false);
+        textFieldPrecoSalada.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        textFieldPrecoSalada.setForeground(new java.awt.Color(26, 26, 26));
+        textFieldPrecoSalada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textFieldPrecoSalada.setText("1,00");
+        textFieldPrecoSalada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(26, 26, 26), 2));
 
         buttonEditarSalada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Editar-30x30.png"))); // NOI18N
         buttonEditarSalada.setBorderPainted(false);
@@ -926,7 +1009,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
             .addGroup(painelValorSaladaLayout.createSequentialGroup()
                 .addComponent(labelRsSalada)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoValorSalada, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                .addComponent(textFieldPrecoSalada, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonEditarSalada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -940,7 +1023,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelValorSaladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonEditarSalada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoValorSalada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldPrecoSalada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -987,21 +1070,20 @@ public class TelaPorcoes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_painelMenuPorcoesMouseEntered
 
-    private void ButtonFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonFecharMouseClicked
+    private void buttonFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonFecharMouseClicked
 
-    }//GEN-LAST:event_ButtonFecharMouseClicked
+    }//GEN-LAST:event_buttonFecharMouseClicked
 
-    private void ButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonFecharActionPerformed
+    private void buttonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFecharActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_ButtonFecharActionPerformed
+    }//GEN-LAST:event_buttonFecharActionPerformed
 
-    private void ButtonMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonMinimizarActionPerformed
+    private void buttonMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMinimizarActionPerformed
         this.setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_ButtonMinimizarActionPerformed
+    }//GEN-LAST:event_buttonMinimizarActionPerformed
 
     private void painelMenuPratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelMenuPratosMouseClicked
-        telaPratos.setVisible(true);
-        this.setVisible(false);
+        mostrarTelaPratos();
     }//GEN-LAST:event_painelMenuPratosMouseClicked
 
     private void painelMenuPratosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelMenuPratosMouseEntered
@@ -1015,42 +1097,42 @@ public class TelaPorcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_painelMenuPratosMouseExited
 
     private void buttonEditarArrozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarArrozActionPerformed
-        modoEdicaoArroz(true);
+        setModoEdicaoArroz(true);
     }//GEN-LAST:event_buttonEditarArrozActionPerformed
 
     private void buttonCancelarArrozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarArrozActionPerformed
-        modoEdicaoArroz(false);
+        setModoEdicaoArroz(false);
         desfazerAlteracoes();
     }//GEN-LAST:event_buttonCancelarArrozActionPerformed
 
     private void buttonEditarCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarCarneActionPerformed
-        modoEdicaoCarne(true);
+        setModoEdicaoCarne(true);
     }//GEN-LAST:event_buttonEditarCarneActionPerformed
 
     private void buttonCancelarCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarCarneActionPerformed
-        modoEdicaoCarne(false);
+        setModoEdicaoCarne(false);
     }//GEN-LAST:event_buttonCancelarCarneActionPerformed
 
     private void buttonEditarSaladaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarSaladaActionPerformed
-        modoEdicaoSalada(true);
+        setModoEdicaoSalada(true);
     }//GEN-LAST:event_buttonEditarSaladaActionPerformed
 
     private void buttonCancelarSaladaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarSaladaActionPerformed
-        modoEdicaoSalada(false);
+        setModoEdicaoSalada(false);
     }//GEN-LAST:event_buttonCancelarSaladaActionPerformed
 
     private void buttonConfirmarArrozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarArrozActionPerformed
         setPrecoArroz(textFieldPrecoArroz.getText());
+        atualizarPrecoArroz();
     }//GEN-LAST:event_buttonConfirmarArrozActionPerformed
 
     private void buttonConfirmarCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarCarneActionPerformed
-        // TODO add your handling code here:
+        setPrecoCarne(textFieldPrecoCarne.getText());
+        atualizarPrecoCarne();
     }//GEN-LAST:event_buttonConfirmarCarneActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonFechar;
-    private javax.swing.JButton ButtonMinimizar;
     private javax.swing.JButton buttonCancelarArroz;
     private javax.swing.JButton buttonCancelarCarne;
     private javax.swing.JButton buttonCancelarSalada;
@@ -1060,8 +1142,8 @@ public class TelaPorcoes extends javax.swing.JFrame {
     private javax.swing.JButton buttonEditarArroz;
     private javax.swing.JButton buttonEditarCarne;
     private javax.swing.JButton buttonEditarSalada;
-    private javax.swing.JTextField campoValorCarne;
-    private javax.swing.JTextField campoValorSalada;
+    private javax.swing.JButton buttonFechar;
+    private javax.swing.JButton buttonMinimizar;
     private javax.swing.JLabel iconeArroz;
     private javax.swing.JLabel iconeCarne;
     private javax.swing.JLabel iconeCirculoPrato1Arroz;
@@ -1097,6 +1179,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
     private javax.swing.JLabel labelRsArroz;
     private javax.swing.JLabel labelRsCarne;
     private javax.swing.JLabel labelRsSalada;
+    private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel linhaInferiorArroz;
     private javax.swing.JLabel linhaInferiorCarne;
     private javax.swing.JLabel linhaInferiorSalada;
@@ -1127,6 +1210,8 @@ public class TelaPorcoes extends javax.swing.JFrame {
     private javax.swing.JPanel painelValorCarne;
     private javax.swing.JPanel painelValorSalada;
     private javax.swing.JTextField textFieldPrecoArroz;
+    private javax.swing.JTextField textFieldPrecoCarne;
+    private javax.swing.JTextField textFieldPrecoSalada;
     private javax.swing.JLabel textoArroz;
     private javax.swing.JLabel textoCarne;
     private javax.swing.JLabel textoMenuPorcoes;

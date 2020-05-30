@@ -81,25 +81,31 @@ public final class TelaPratos extends javax.swing.JFrame {
         labelPrecoP3.setText(Receptor.getPrecoPrato(POSICAO_LINHA_PRATO));
     }
     
+    private void mostrarTelaPorcoes(){
+        telaPorcoes.setVisible(true);
+        telaPorcoes.atualizarQtdePorcoes();
+        telaPorcoes.atualizarPrecoPorcoes();
+    }
+    
     private void atualizarQtdePorcoesPrato1(){
-        final int POSICAO_LINHA_PRATO = 0;
-        labelQtdeArrozP1.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO, 0));
-        labelQtdeCarneP1.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO, 1));
-        labelQtdeSaladaP1.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO, 2));
+        final int POSICAO_LINHA_PRATO1 = 0;
+        labelQtdeArrozP1.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO1, 0));
+        labelQtdeCarneP1.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO1, 1));
+        labelQtdeSaladaP1.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO1, 2));
     }
     
     private void atualizarQtdePorcoesPrato2(){
-        final int POSICAO_LINHA_PRATO = 1;
-        labelQtdeArrozP2.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO, 0));
-        labelQtdeCarneP2.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO, 1));
-        labelQtdeSaladaP2.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO, 2));
+        final int POSICAO_LINHA_PRATO2 = 1;
+        labelQtdeArrozP2.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO2, 0));
+        labelQtdeCarneP2.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO2, 1));
+        labelQtdeSaladaP2.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO2, 2));
     }
     
     private void atualizarQtdePorcoesPrato3(){
-        final int POSICAO_LINHA_PRATO = 2;
-        labelQtdeArrozP3.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO, 0));
-        labelQtdeCarneP3.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO, 1));
-        labelQtdeSaladaP3.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO, 2));
+        final int POSICAO_LINHA_PRATO3 = 2;
+        labelQtdeArrozP3.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO3, 0));
+        labelQtdeCarneP3.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO3, 1));
+        labelQtdeSaladaP3.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO3, 2));
     }
     
     private void addArroz(int posicaoLinhaPrato){
@@ -145,6 +151,7 @@ public final class TelaPratos extends javax.swing.JFrame {
         painelSuperior = new javax.swing.JPanel();
         ButtonFechar = new javax.swing.JButton();
         ButtonMinimizar = new javax.swing.JButton();
+        labelTitulo = new javax.swing.JLabel();
         painelLateral = new javax.swing.JPanel();
         painelMenuPratos = new javax.swing.JPanel();
         iconeMenuPrato = new javax.swing.JLabel();
@@ -236,6 +243,7 @@ public final class TelaPratos extends javax.swing.JFrame {
         labelPrecoP3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Controle de Jantinhas");
         setUndecorated(true);
         setSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -273,6 +281,12 @@ public final class TelaPratos extends javax.swing.JFrame {
             }
         });
         painelSuperior.add(ButtonMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1299, 7, -1, -1));
+
+        labelTitulo.setBackground(new java.awt.Color(242, 242, 235));
+        labelTitulo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        labelTitulo.setForeground(new java.awt.Color(242, 242, 235));
+        labelTitulo.setText("Controle de Jantinhas");
+        painelSuperior.add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         getContentPane().add(painelSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
@@ -942,7 +956,7 @@ public final class TelaPratos extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonMinimizarActionPerformed
 
     private void painelMenuPorcoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelMenuPorcoesMouseClicked
-        telaPorcoes.setVisible(true);
+        mostrarTelaPorcoes();
         this.setVisible(false);
     }//GEN-LAST:event_painelMenuPorcoesMouseClicked
 
@@ -1126,6 +1140,7 @@ public final class TelaPratos extends javax.swing.JFrame {
     private javax.swing.JLabel labelRsP1;
     private javax.swing.JLabel labelRsP2;
     private javax.swing.JLabel labelRsP3;
+    private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel linhaInferiorP2;
     private javax.swing.JLabel linhaInferiorP3;
     private javax.swing.JLabel linhaInferiorPrato1;
