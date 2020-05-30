@@ -9,6 +9,8 @@ import static view.TelaPratos.telaPratos;
 
 public class TelaPorcoes extends javax.swing.JFrame {
 
+    private static String precoAtualArroz;
+
     public TelaPorcoes() {
         initComponents();
         atualizarPrecoPorcoes();
@@ -55,29 +57,29 @@ public class TelaPorcoes extends javax.swing.JFrame {
         atualizarPrecoSalada();
     }
 
-    private void atualizarQtdePorcoes() {
+    protected final void atualizarQtdePorcoes() {
         atualizarQtdeArroz();
         atualizarQtdeCarne();
         atualizarQtdeSalada();
     }
-    
-    private void esconderBotoes(){
+
+    private void esconderBotoes() {
         buttonCancelarArroz.setVisible(false);
         buttonConfirmarArroz.setVisible(false);
-        
+
         buttonCancelarCarne.setVisible(false);
         buttonConfirmarCarne.setVisible(false);
-        
+
         buttonCancelarSalada.setVisible(false);
         buttonConfirmarSalada.setVisible(false);
     }
 
-    private void destivarCampos(){
-        campoValorArroz.setEditable(false);
+    private void destivarCampos() {
+        textFieldPrecoArroz.setEditable(false);
         campoValorCarne.setEditable(false);
         campoValorSalada.setEditable(false);
     }
-    
+
     private void atualizarQtdeArroz() {
         final int POSICAO_PORCAO = 0;
         labelQtdeArrozP1.setText(Receptor.getQtdePorcao(0, POSICAO_PORCAO));
@@ -101,7 +103,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
 
     private void atualizarPrecoArroz() {
         final int POSICAO_PORCAO = 0;
-        campoValorArroz.setText(Receptor.getPrecoPorcao(POSICAO_PORCAO));
+        textFieldPrecoArroz.setText(Receptor.getPrecoPorcao(POSICAO_PORCAO));
     }
 
     private void atualizarPrecoCarne() {
@@ -114,60 +116,74 @@ public class TelaPorcoes extends javax.swing.JFrame {
         campoValorSalada.setText(Receptor.getPrecoPorcao(POSICAO_PORCAO));
     }
 
+    private String getPrecoAtualArroz() {
+        return textFieldPrecoArroz.getText();
+    }
+
+    private void desfazerAlteracoes() {
+        textFieldPrecoArroz.setText(precoAtualArroz);
+    }
+
     private void modoEdicaoArroz(boolean ativado) {
         if (ativado) {
             buttonEditarArroz.setVisible(false);
             buttonCancelarArroz.setVisible(true);
             buttonConfirmarArroz.setVisible(true);
-            campoValorArroz.setEditable(true);
-        }else{
+            textFieldPrecoArroz.setEditable(true);
+            precoAtualArroz = getPrecoAtualArroz();
+        } else {
             buttonEditarArroz.setVisible(true);
             buttonCancelarArroz.setVisible(false);
             buttonConfirmarArroz.setVisible(false);
-            campoValorArroz.setEditable(false);
+            textFieldPrecoArroz.setEditable(false);
         }
     }
-    
+
     private void modoEdicaoCarne(boolean ativado) {
         if (ativado) {
             buttonEditarCarne.setVisible(false);
             buttonCancelarCarne.setVisible(true);
             buttonConfirmarCarne.setVisible(true);
             campoValorCarne.setEditable(true);
-        }else{
+        } else {
             buttonEditarCarne.setVisible(true);
             buttonCancelarCarne.setVisible(false);
             buttonConfirmarCarne.setVisible(false);
             campoValorCarne.setEditable(false);
         }
     }
-    
+
     private void modoEdicaoSalada(boolean ativado) {
         if (ativado) {
             buttonEditarSalada.setVisible(false);
             buttonCancelarSalada.setVisible(true);
             buttonConfirmarSalada.setVisible(true);
             campoValorSalada.setEditable(true);
-        }else{
+        } else {
             buttonEditarSalada.setVisible(true);
             buttonCancelarSalada.setVisible(false);
             buttonConfirmarSalada.setVisible(false);
             campoValorSalada.setEditable(false);
         }
     }
-    
-    private void setPrecoArroz(String preco){
-        int retorno = Transmissor.setPrecoPorcao(0, preco);
-        switch(retorno){
-            case 1:
-                modoEdicaoArroz(false);
-                JOptionPane.showMessageDialog(null, "Preço da porção alterado", "Alteração de preço", JOptionPane.INFORMATION_MESSAGE);
-                break;
-            case 0:
-                JOptionPane.showMessageDialog(null, "Formato de preço inválido", "Erro no novo preço", JOptionPane.ERROR_MESSAGE);
-                break;
+
+    private void setPrecoArroz(String preco) {
+        if (!textFieldPrecoArroz.getText().equals(precoAtualArroz)) {
+            int retorno = Transmissor.setPrecoPorcao(0, preco);
+            switch (retorno) {
+                case 1:
+                    modoEdicaoArroz(false);
+                    JOptionPane.showMessageDialog(null, "Preço da porção alterado", "Alteração de preço da porção", JOptionPane.INFORMATION_MESSAGE);
+                    telaPratos.atualizarPrecoPratos();
+                    break;
+                case 0:
+                    JOptionPane.showMessageDialog(null, "Formato de preço inválido", "Erro no novo preço", JOptionPane.ERROR_MESSAGE);
+                    break;
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "O preço da porção não foi alterado", "Alteração de preço da porção", JOptionPane.INFORMATION_MESSAGE);
+            modoEdicaoArroz(false);
         }
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -210,7 +226,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonConfirmarArroz = new javax.swing.JButton();
         painelValorArroz = new javax.swing.JPanel();
         labelRsArroz = new javax.swing.JLabel();
-        campoValorArroz = new javax.swing.JTextField();
+        textFieldPrecoArroz = new javax.swing.JTextField();
         buttonEditarArroz = new javax.swing.JButton();
         painelCarne = new javax.swing.JPanel();
         painelTituloCarne = new javax.swing.JPanel();
@@ -516,12 +532,13 @@ public class TelaPorcoes extends javax.swing.JFrame {
         labelRsArroz.setForeground(new java.awt.Color(26, 26, 26));
         labelRsArroz.setText("R$");
 
-        campoValorArroz.setEditable(false);
-        campoValorArroz.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        campoValorArroz.setForeground(new java.awt.Color(26, 26, 26));
-        campoValorArroz.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        campoValorArroz.setText("1,00");
-        campoValorArroz.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(26, 26, 26), 2));
+        textFieldPrecoArroz.setEditable(false);
+        textFieldPrecoArroz.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        textFieldPrecoArroz.setForeground(new java.awt.Color(26, 26, 26));
+        textFieldPrecoArroz.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textFieldPrecoArroz.setText("1,00");
+        textFieldPrecoArroz.setToolTipText("");
+        textFieldPrecoArroz.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(26, 26, 26), 2));
 
         buttonEditarArroz.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Editar-30x30.png"))); // NOI18N
         buttonEditarArroz.setBorderPainted(false);
@@ -541,7 +558,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
             .addGroup(painelValorArrozLayout.createSequentialGroup()
                 .addComponent(labelRsArroz)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoValorArroz, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                .addComponent(textFieldPrecoArroz, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonEditarArroz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -555,9 +572,11 @@ public class TelaPorcoes extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelValorArrozLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonEditarArroz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoValorArroz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldPrecoArroz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        textFieldPrecoArroz.getAccessibleContext().setAccessibleName("");
 
         painelArroz.add(painelValorArroz, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, 210, 50));
 
@@ -750,6 +769,11 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonConfirmarCarne.setContentAreaFilled(false);
         buttonConfirmarCarne.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonConfirmarCarne.setOpaque(true);
+        buttonConfirmarCarne.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonConfirmarCarneActionPerformed(evt);
+            }
+        });
         painelCarne.add(buttonConfirmarCarne, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 190, -1, -1));
 
         painelCentral.add(painelCarne, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
@@ -972,7 +996,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonFecharActionPerformed
 
     private void ButtonMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonMinimizarActionPerformed
-        setState(JFrame.ICONIFIED);
+        this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_ButtonMinimizarActionPerformed
 
     private void painelMenuPratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelMenuPratosMouseClicked
@@ -996,6 +1020,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
 
     private void buttonCancelarArrozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarArrozActionPerformed
         modoEdicaoArroz(false);
+        desfazerAlteracoes();
     }//GEN-LAST:event_buttonCancelarArrozActionPerformed
 
     private void buttonEditarCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarCarneActionPerformed
@@ -1015,8 +1040,12 @@ public class TelaPorcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonCancelarSaladaActionPerformed
 
     private void buttonConfirmarArrozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarArrozActionPerformed
-        setPrecoArroz(campoValorArroz.getText());
+        setPrecoArroz(textFieldPrecoArroz.getText());
     }//GEN-LAST:event_buttonConfirmarArrozActionPerformed
+
+    private void buttonConfirmarCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarCarneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonConfirmarCarneActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1031,7 +1060,6 @@ public class TelaPorcoes extends javax.swing.JFrame {
     private javax.swing.JButton buttonEditarArroz;
     private javax.swing.JButton buttonEditarCarne;
     private javax.swing.JButton buttonEditarSalada;
-    private javax.swing.JTextField campoValorArroz;
     private javax.swing.JTextField campoValorCarne;
     private javax.swing.JTextField campoValorSalada;
     private javax.swing.JLabel iconeArroz;
@@ -1098,6 +1126,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
     private javax.swing.JPanel painelValorArroz;
     private javax.swing.JPanel painelValorCarne;
     private javax.swing.JPanel painelValorSalada;
+    private javax.swing.JTextField textFieldPrecoArroz;
     private javax.swing.JLabel textoArroz;
     private javax.swing.JLabel textoCarne;
     private javax.swing.JLabel textoMenuPorcoes;

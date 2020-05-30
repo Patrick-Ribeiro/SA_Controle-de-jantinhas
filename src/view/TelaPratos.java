@@ -5,7 +5,7 @@ import controller.Transmissor;
 import java.awt.Color;
 import javax.swing.JFrame;
 
-public class TelaPratos extends javax.swing.JFrame {
+public final class TelaPratos extends javax.swing.JFrame {
 
     protected static TelaPratos telaPratos = new TelaPratos();
     protected static TelaPorcoes telaPorcoes = new TelaPorcoes();
@@ -54,7 +54,7 @@ public class TelaPratos extends javax.swing.JFrame {
         Transmissor.iniciarArrays();
     }
     
-    protected void atualizarPrecoPratos(){
+    protected final void atualizarPrecoPratos(){
         atualizarPrecoPrato1();
         atualizarPrecoPrato2();
         atualizarPrecoPrato3();
@@ -105,31 +105,37 @@ public class TelaPratos extends javax.swing.JFrame {
     private void addArroz(int posicaoLinhaPrato){
         final int POSICAO_PORCAO = 0;
         Transmissor.addPorcao(posicaoLinhaPrato, POSICAO_PORCAO);
+        telaPorcoes.atualizarQtdePorcoes();
     }
     
     private void removeArroz(int posicaoLinhaPrato){
         final int POSICAO_PORCAO = 0;
         Transmissor.removePorcao(posicaoLinhaPrato, POSICAO_PORCAO);
+        telaPorcoes.atualizarQtdePorcoes();
     }
     
     private void addCarne(int posicaoLinhaPrato){
         final int POSICAO_PORCAO = 1;
         Transmissor.addPorcao(posicaoLinhaPrato, POSICAO_PORCAO);
+        telaPorcoes.atualizarQtdePorcoes();
     }
     
     private void removeCarne(int posicaoLinhaPrato){
         final int POSICAO_PORCAO = 1;
         Transmissor.removePorcao(posicaoLinhaPrato, POSICAO_PORCAO);
+        telaPorcoes.atualizarQtdePorcoes();
     }
     
     private void addSalada(int posicaoLinhaPrato){
         final int POSICAO_PORCAO = 2;
         Transmissor.addPorcao(posicaoLinhaPrato, POSICAO_PORCAO);
+        telaPorcoes.atualizarQtdePorcoes();
     }
     
     private void removeSalada(int posicaoLinhaPrato){
         final int POSICAO_PORCAO = 2;
         Transmissor.removePorcao(posicaoLinhaPrato, POSICAO_PORCAO);
+        telaPorcoes.atualizarQtdePorcoes();
     }
 
     @SuppressWarnings("unchecked")
@@ -510,15 +516,15 @@ public class TelaPratos extends javax.swing.JFrame {
         labelRsP1.setText("R$");
         painelPrecoP1.add(labelRsP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
-        labelPrecoP1.setFont(new java.awt.Font("Arial Black", 0, 48)); // NOI18N
+        labelPrecoP1.setFont(new java.awt.Font("Arial Black", 0, 42)); // NOI18N
         labelPrecoP1.setForeground(new java.awt.Color(26, 26, 26));
-        labelPrecoP1.setText("0");
+        labelPrecoP1.setText("999,99");
         labelPrecoP1.setPreferredSize(new java.awt.Dimension(150, 68));
-        painelPrecoP1.add(labelPrecoP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 150, -1));
+        painelPrecoP1.add(labelPrecoP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 160, -1));
 
-        painelP1.add(painelPrecoP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, -1, -1));
+        painelP1.add(painelPrecoP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, 240, -1));
 
-        painelCentral.add(painelP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
+        painelCentral.add(painelP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 940, -1));
 
         painelP2.setBackground(new java.awt.Color(242, 242, 235));
         painelP2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -709,13 +715,13 @@ public class TelaPratos extends javax.swing.JFrame {
         labelRsP2.setText("R$");
         painelPrecoP2.add(labelRsP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
-        labelPrecoP2.setFont(new java.awt.Font("Arial Black", 0, 48)); // NOI18N
+        labelPrecoP2.setFont(new java.awt.Font("Arial Black", 0, 42)); // NOI18N
         labelPrecoP2.setForeground(new java.awt.Color(26, 26, 26));
-        labelPrecoP2.setText("0");
+        labelPrecoP2.setText("999,99");
         labelPrecoP2.setPreferredSize(new java.awt.Dimension(150, 68));
-        painelPrecoP2.add(labelPrecoP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, -1, -1));
+        painelPrecoP2.add(labelPrecoP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 160, -1));
 
-        painelP2.add(painelPrecoP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, -1, -1));
+        painelP2.add(painelPrecoP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, 230, -1));
 
         painelCentral.add(painelP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
@@ -907,13 +913,13 @@ public class TelaPratos extends javax.swing.JFrame {
         labelRsP3.setText("R$");
         painelPrecoP3.add(labelRsP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
-        labelPrecoP3.setFont(new java.awt.Font("Arial Black", 0, 48)); // NOI18N
+        labelPrecoP3.setFont(new java.awt.Font("Arial Black", 0, 42)); // NOI18N
         labelPrecoP3.setForeground(new java.awt.Color(26, 26, 26));
-        labelPrecoP3.setText("0");
+        labelPrecoP3.setText("999,99");
         labelPrecoP3.setPreferredSize(new java.awt.Dimension(150, 68));
-        painelPrecoP3.add(labelPrecoP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, -1, -1));
+        painelPrecoP3.add(labelPrecoP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 160, -1));
 
-        painelP3.add(painelPrecoP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, -1, -1));
+        painelP3.add(painelPrecoP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, 220, -1));
 
         painelCentral.add(painelP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, -1));
 

@@ -1,5 +1,4 @@
 package controller;
-import javax.swing.JOptionPane;
 import model.Porcoes;
 import model.Pratos;
 
