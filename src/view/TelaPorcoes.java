@@ -1048,6 +1048,11 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonConfirmarSalada.setContentAreaFilled(false);
         buttonConfirmarSalada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonConfirmarSalada.setOpaque(true);
+        buttonConfirmarSalada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonConfirmarSaladaActionPerformed(evt);
+            }
+        });
         painelSalada.add(buttonConfirmarSalada, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 190, -1, -1));
 
         painelCentral.add(painelSalada, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, -1));
@@ -1130,6 +1135,11 @@ public class TelaPorcoes extends javax.swing.JFrame {
         setPrecoCarne(textFieldPrecoCarne.getText());
         atualizarPrecoCarne();
     }//GEN-LAST:event_buttonConfirmarCarneActionPerformed
+
+    private void buttonConfirmarSaladaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarSaladaActionPerformed
+        setPrecoSalada(textFieldPrecoSalada.getText());
+        atualizarPrecoSalada();
+    }//GEN-LAST:event_buttonConfirmarSaladaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

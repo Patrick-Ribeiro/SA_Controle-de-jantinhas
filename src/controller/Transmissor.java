@@ -29,8 +29,12 @@ public class Transmissor {
     public static int setPrecoPorcao(int posicaoPorcao, String novoPreco) {
         try {
             Double precoFormatado = formatarPreco(novoPreco);
-            Porcoes.setPrecoPorcao(posicaoPorcao, precoFormatado);
-            return 1;
+            if (precoFormatado >= 0F) {
+                Porcoes.setPrecoPorcao(posicaoPorcao, precoFormatado);
+                return 1;
+            } else {
+                return 0;
+            }
         } catch (NumberFormatException e) {
             return 0;
         }
