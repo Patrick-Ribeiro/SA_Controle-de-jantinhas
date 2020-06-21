@@ -26,17 +26,17 @@ public class Transmissor {
         }
     }
 
-    public static int setPrecoPorcao(int posicaoPorcao, String novoPreco) {
+    public static boolean setPrecoPorcao(int posicaoPorcao, String novoPreco) {
         try {
             Double precoFormatado = formatarPreco(novoPreco);
             if (precoFormatado >= 0F) {
                 Porcoes.setPrecoPorcao(posicaoPorcao, precoFormatado);
-                return 1;
+                return true;
             } else {
-                return 0;
+                return false;
             }
         } catch (NumberFormatException e) {
-            return 0;
+            return false;
         }
     }
 

@@ -5,7 +5,7 @@ import controller.Transmissor;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import static view.TelaPratos.telaPratos;
+import static programa.Main.telaPratos;
 
 public class TelaPorcoes extends javax.swing.JFrame {
 
@@ -32,7 +32,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -246,18 +246,15 @@ public class TelaPorcoes extends javax.swing.JFrame {
     }
 
     private void enviarNovoPreco(int posicaoPorcao, String preco) {
-        int retorno = Transmissor.setPrecoPorcao(posicaoPorcao, preco);
-        switch (retorno) {
-            case 1: //Sucesso
-                setModoEdicaoArroz(false);
-                setModoEdicaoCarne(false);
-                setModoEdicaoSalada(false);
-                JOptionPane.showMessageDialog(null, "Preço da porção alterado", "Alteração de preço da porção", JOptionPane.INFORMATION_MESSAGE);
-                telaPratos.atualizarPrecoPratos();
-                break;
-            case 0: //Falha
-                JOptionPane.showMessageDialog(null, "Formato de preço inválido", "Erro no novo preço", JOptionPane.ERROR_MESSAGE);
-                break;
+        boolean retorno = Transmissor.setPrecoPorcao(posicaoPorcao, preco);
+        if (retorno) {
+            setModoEdicaoArroz(false);
+            setModoEdicaoCarne(false);
+            setModoEdicaoSalada(false);
+            telaPratos.atualizarPrecoPratos();
+            JOptionPane.showMessageDialog(null, "Preço da porção alterado", "Alteração de preço da porção", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Formato de preço inválido", "Erro no novo preço", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -431,10 +428,15 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonFechar.setBorderPainted(false);
         buttonFechar.setContentAreaFilled(false);
         buttonFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        buttonFechar.setPreferredSize(new java.awt.Dimension(28, 28));
         buttonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonFecharMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonFecharMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonFecharMouseExited(evt);
             }
         });
         buttonFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -449,6 +451,14 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonMinimizar.setBorderPainted(false);
         buttonMinimizar.setContentAreaFilled(false);
         buttonMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonMinimizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonMinimizarMouseExited(evt);
+            }
+        });
         buttonMinimizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonMinimizarActionPerformed(evt);
@@ -590,6 +600,14 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonCancelarArroz.setBorderPainted(false);
         buttonCancelarArroz.setContentAreaFilled(false);
         buttonCancelarArroz.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonCancelarArroz.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonCancelarArrozMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonCancelarArrozMouseExited(evt);
+            }
+        });
         buttonCancelarArroz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelarArrozActionPerformed(evt);
@@ -602,6 +620,14 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonConfirmarArroz.setBorderPainted(false);
         buttonConfirmarArroz.setContentAreaFilled(false);
         buttonConfirmarArroz.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonConfirmarArroz.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonConfirmarArrozMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonConfirmarArrozMouseExited(evt);
+            }
+        });
         buttonConfirmarArroz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonConfirmarArrozActionPerformed(evt);
@@ -628,6 +654,14 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonEditarArroz.setContentAreaFilled(false);
         buttonEditarArroz.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonEditarArroz.setPreferredSize(new java.awt.Dimension(36, 36));
+        buttonEditarArroz.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonEditarArrozMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonEditarArrozMouseExited(evt);
+            }
+        });
         buttonEditarArroz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditarArrozActionPerformed(evt);
@@ -800,6 +834,14 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonEditarCarne.setContentAreaFilled(false);
         buttonEditarCarne.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonEditarCarne.setPreferredSize(new java.awt.Dimension(36, 36));
+        buttonEditarCarne.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonEditarCarneMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonEditarCarneMouseExited(evt);
+            }
+        });
         buttonEditarCarne.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditarCarneActionPerformed(evt);
@@ -839,6 +881,14 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonCancelarCarne.setContentAreaFilled(false);
         buttonCancelarCarne.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonCancelarCarne.setOpaque(true);
+        buttonCancelarCarne.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonCancelarCarneMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonCancelarCarneMouseExited(evt);
+            }
+        });
         buttonCancelarCarne.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelarCarneActionPerformed(evt);
@@ -852,6 +902,14 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonConfirmarCarne.setContentAreaFilled(false);
         buttonConfirmarCarne.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonConfirmarCarne.setOpaque(true);
+        buttonConfirmarCarne.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonConfirmarCarneMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonConfirmarCarneMouseExited(evt);
+            }
+        });
         buttonConfirmarCarne.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonConfirmarCarneActionPerformed(evt);
@@ -996,6 +1054,14 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonEditarSalada.setContentAreaFilled(false);
         buttonEditarSalada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonEditarSalada.setPreferredSize(new java.awt.Dimension(36, 36));
+        buttonEditarSalada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonEditarSaladaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonEditarSaladaMouseExited(evt);
+            }
+        });
         buttonEditarSalada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditarSaladaActionPerformed(evt);
@@ -1035,6 +1101,14 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonCancelarSalada.setContentAreaFilled(false);
         buttonCancelarSalada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonCancelarSalada.setOpaque(true);
+        buttonCancelarSalada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonCancelarSaladaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonCancelarSaladaMouseExited(evt);
+            }
+        });
         buttonCancelarSalada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelarSaladaActionPerformed(evt);
@@ -1048,6 +1122,14 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonConfirmarSalada.setContentAreaFilled(false);
         buttonConfirmarSalada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonConfirmarSalada.setOpaque(true);
+        buttonConfirmarSalada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonConfirmarSaladaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonConfirmarSaladaMouseExited(evt);
+            }
+        });
         buttonConfirmarSalada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonConfirmarSaladaActionPerformed(evt);
@@ -1102,7 +1184,7 @@ public class TelaPorcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_painelMenuPratosMouseExited
 
     private void buttonEditarArrozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarArrozActionPerformed
-        setModoEdicaoArroz(true);
+        setModoEdicaoArroz(true);  
     }//GEN-LAST:event_buttonEditarArrozActionPerformed
 
     private void buttonCancelarArrozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarArrozActionPerformed
@@ -1140,6 +1222,94 @@ public class TelaPorcoes extends javax.swing.JFrame {
         setPrecoSalada(textFieldPrecoSalada.getText());
         atualizarPrecoSalada();
     }//GEN-LAST:event_buttonConfirmarSaladaActionPerformed
+
+    private void buttonFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonFecharMouseEntered
+        telaPratos.animacaoBotaoPressionado("fechar", buttonFechar, true);
+    }//GEN-LAST:event_buttonFecharMouseEntered
+
+    private void buttonFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonFecharMouseExited
+        telaPratos.animacaoBotaoPressionado("fechar", buttonFechar, false);
+    }//GEN-LAST:event_buttonFecharMouseExited
+
+    private void buttonMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonMinimizarMouseEntered
+        telaPratos.animacaoBotaoPressionado("minimizar", buttonMinimizar, true);
+    }//GEN-LAST:event_buttonMinimizarMouseEntered
+
+    private void buttonMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonMinimizarMouseExited
+        telaPratos.animacaoBotaoPressionado("minimizar", buttonMinimizar, false);
+    }//GEN-LAST:event_buttonMinimizarMouseExited
+
+    private void buttonEditarArrozMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEditarArrozMouseEntered
+        telaPratos.animacaoBotaoPressionado("editar", buttonEditarArroz, true);
+    }//GEN-LAST:event_buttonEditarArrozMouseEntered
+
+    private void buttonEditarArrozMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEditarArrozMouseExited
+        telaPratos.animacaoBotaoPressionado("editar", buttonEditarArroz, false);
+    }//GEN-LAST:event_buttonEditarArrozMouseExited
+
+    private void buttonEditarCarneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEditarCarneMouseEntered
+        telaPratos.animacaoBotaoPressionado("editar", buttonEditarCarne, true);
+    }//GEN-LAST:event_buttonEditarCarneMouseEntered
+
+    private void buttonEditarCarneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEditarCarneMouseExited
+        telaPratos.animacaoBotaoPressionado("editar", buttonEditarCarne, false);
+    }//GEN-LAST:event_buttonEditarCarneMouseExited
+
+    private void buttonEditarSaladaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEditarSaladaMouseEntered
+        telaPratos.animacaoBotaoPressionado("editar", buttonEditarSalada, true);
+    }//GEN-LAST:event_buttonEditarSaladaMouseEntered
+
+    private void buttonEditarSaladaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEditarSaladaMouseExited
+        telaPratos.animacaoBotaoPressionado("editar", buttonEditarSalada, false);
+    }//GEN-LAST:event_buttonEditarSaladaMouseExited
+
+    private void buttonCancelarArrozMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCancelarArrozMouseEntered
+        telaPratos.animacaoBotaoPressionado("cancelar", buttonCancelarArroz, true);
+    }//GEN-LAST:event_buttonCancelarArrozMouseEntered
+
+    private void buttonCancelarArrozMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCancelarArrozMouseExited
+        telaPratos.animacaoBotaoPressionado("cancelar", buttonCancelarArroz, false);
+    }//GEN-LAST:event_buttonCancelarArrozMouseExited
+
+    private void buttonConfirmarArrozMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonConfirmarArrozMouseEntered
+        telaPratos.animacaoBotaoPressionado("confirmar", buttonConfirmarArroz, true);
+    }//GEN-LAST:event_buttonConfirmarArrozMouseEntered
+
+    private void buttonConfirmarArrozMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonConfirmarArrozMouseExited
+        telaPratos.animacaoBotaoPressionado("confirmar", buttonConfirmarArroz, false);
+    }//GEN-LAST:event_buttonConfirmarArrozMouseExited
+
+    private void buttonCancelarCarneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCancelarCarneMouseEntered
+        telaPratos.animacaoBotaoPressionado("cancelar", buttonCancelarCarne, true);
+    }//GEN-LAST:event_buttonCancelarCarneMouseEntered
+
+    private void buttonCancelarCarneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCancelarCarneMouseExited
+        telaPratos.animacaoBotaoPressionado("cancelar", buttonCancelarCarne, false);
+    }//GEN-LAST:event_buttonCancelarCarneMouseExited
+
+    private void buttonConfirmarCarneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonConfirmarCarneMouseEntered
+        telaPratos.animacaoBotaoPressionado("confirmar", buttonConfirmarCarne, true);
+    }//GEN-LAST:event_buttonConfirmarCarneMouseEntered
+
+    private void buttonConfirmarCarneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonConfirmarCarneMouseExited
+        telaPratos.animacaoBotaoPressionado("confirmar", buttonConfirmarCarne, false);
+    }//GEN-LAST:event_buttonConfirmarCarneMouseExited
+
+    private void buttonCancelarSaladaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCancelarSaladaMouseEntered
+        telaPratos.animacaoBotaoPressionado("cancelar", buttonCancelarSalada, true);
+    }//GEN-LAST:event_buttonCancelarSaladaMouseEntered
+
+    private void buttonCancelarSaladaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCancelarSaladaMouseExited
+        telaPratos.animacaoBotaoPressionado("cancelar", buttonCancelarSalada, false);
+    }//GEN-LAST:event_buttonCancelarSaladaMouseExited
+
+    private void buttonConfirmarSaladaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonConfirmarSaladaMouseEntered
+        telaPratos.animacaoBotaoPressionado("confirmar", buttonConfirmarSalada, true);
+    }//GEN-LAST:event_buttonConfirmarSaladaMouseEntered
+
+    private void buttonConfirmarSaladaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonConfirmarSaladaMouseExited
+        telaPratos.animacaoBotaoPressionado("confirmar", buttonConfirmarSalada, false);
+    }//GEN-LAST:event_buttonConfirmarSaladaMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

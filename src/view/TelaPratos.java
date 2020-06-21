@@ -3,12 +3,14 @@ package view;
 import controller.Receptor;
 import controller.Transmissor;
 import java.awt.Color;
+import javax.swing.Icon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import static programa.Main.telaPorcoes;
+import static programa.Main.telaPratos;
+
 
 public final class TelaPratos extends javax.swing.JFrame {
-
-    protected static TelaPratos telaPratos = new TelaPratos();
-    protected static TelaPorcoes telaPorcoes = new TelaPorcoes();
     
     public TelaPratos() {
         initComponents();
@@ -25,7 +27,7 @@ public final class TelaPratos extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -50,107 +52,147 @@ public final class TelaPratos extends javax.swing.JFrame {
         });
     }
     
-    private static void iniciarArrays(){
+    private static void iniciarArrays() {
         Transmissor.iniciarArrays();
     }
     
-    protected final void atualizarPrecoPratos(){
+    protected final void atualizarPrecoPratos() {
         atualizarPrecoPrato1();
         atualizarPrecoPrato2();
         atualizarPrecoPrato3();
     }
     
-    private void atualizarQtdePorcoes(){
+    private void atualizarQtdePorcoes() {
         atualizarQtdePorcoesPrato1();
         atualizarQtdePorcoesPrato2();
         atualizarQtdePorcoesPrato3();
     }
     
-    private void atualizarPrecoPrato1(){
+    private void atualizarPrecoPrato1() {
         final int POSICAO_LINHA_PRATO = 0;
-        labelPrecoP1.setText(Receptor.getPrecoPrato(POSICAO_LINHA_PRATO));      
+        labelPrecoP1.setText(Receptor.getPrecoPrato(POSICAO_LINHA_PRATO));        
     }
     
-    private void atualizarPrecoPrato2(){
+    private void atualizarPrecoPrato2() {
         final int POSICAO_LINHA_PRATO = 1;
         labelPrecoP2.setText(Receptor.getPrecoPrato(POSICAO_LINHA_PRATO));
     }
     
-    private void atualizarPrecoPrato3(){
+    private void atualizarPrecoPrato3() {
         final int POSICAO_LINHA_PRATO = 2;
         labelPrecoP3.setText(Receptor.getPrecoPrato(POSICAO_LINHA_PRATO));
     }
     
-    private void mostrarTelaPorcoes(){
+    private void mostrarTelaPorcoes() {
         telaPorcoes.setVisible(true);
         telaPorcoes.atualizarQtdePorcoes();
         telaPorcoes.atualizarPrecoPorcoes();
     }
     
-    private void atualizarQtdePorcoesPrato1(){
+    private void atualizarQtdePorcoesPrato1() {
         final int POSICAO_LINHA_PRATO1 = 0;
         labelQtdeArrozP1.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO1, 0));
         labelQtdeCarneP1.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO1, 1));
         labelQtdeSaladaP1.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO1, 2));
     }
     
-    private void atualizarQtdePorcoesPrato2(){
+    private void atualizarQtdePorcoesPrato2() {
         final int POSICAO_LINHA_PRATO2 = 1;
         labelQtdeArrozP2.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO2, 0));
         labelQtdeCarneP2.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO2, 1));
         labelQtdeSaladaP2.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO2, 2));
     }
     
-    private void atualizarQtdePorcoesPrato3(){
+    private void atualizarQtdePorcoesPrato3() {
         final int POSICAO_LINHA_PRATO3 = 2;
         labelQtdeArrozP3.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO3, 0));
         labelQtdeCarneP3.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO3, 1));
         labelQtdeSaladaP3.setText(Receptor.getQtdePorcao(POSICAO_LINHA_PRATO3, 2));
     }
     
-    private void addArroz(int posicaoLinhaPrato){
+    private void addArroz(int posicaoLinhaPrato) {
         final int POSICAO_PORCAO = 0;
         Transmissor.addPorcao(posicaoLinhaPrato, POSICAO_PORCAO);
         telaPorcoes.atualizarQtdePorcoes();
     }
     
-    private void removeArroz(int posicaoLinhaPrato){
+    private void removeArroz(int posicaoLinhaPrato) {
         final int POSICAO_PORCAO = 0;
         Transmissor.removePorcao(posicaoLinhaPrato, POSICAO_PORCAO);
         telaPorcoes.atualizarQtdePorcoes();
     }
     
-    private void addCarne(int posicaoLinhaPrato){
+    private void addCarne(int posicaoLinhaPrato) {
         final int POSICAO_PORCAO = 1;
         Transmissor.addPorcao(posicaoLinhaPrato, POSICAO_PORCAO);
         telaPorcoes.atualizarQtdePorcoes();
     }
     
-    private void removeCarne(int posicaoLinhaPrato){
+    private void removeCarne(int posicaoLinhaPrato) {
         final int POSICAO_PORCAO = 1;
         Transmissor.removePorcao(posicaoLinhaPrato, POSICAO_PORCAO);
         telaPorcoes.atualizarQtdePorcoes();
     }
     
-    private void addSalada(int posicaoLinhaPrato){
+    private void addSalada(int posicaoLinhaPrato) {
         final int POSICAO_PORCAO = 2;
         Transmissor.addPorcao(posicaoLinhaPrato, POSICAO_PORCAO);
         telaPorcoes.atualizarQtdePorcoes();
     }
     
-    private void removeSalada(int posicaoLinhaPrato){
+    private void removeSalada(int posicaoLinhaPrato) {
         final int POSICAO_PORCAO = 2;
         Transmissor.removePorcao(posicaoLinhaPrato, POSICAO_PORCAO);
         telaPorcoes.atualizarQtdePorcoes();
     }
-
+    
+    protected void animacaoBotaoPressionado(String tipoBotao, JButton button, boolean ativo) {
+        Icon iconePadrao = null;
+        Icon iconePressionado = null;
+        switch(tipoBotao){
+            case "add":
+                 iconePadrao = new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Adicionar-30x30.png"));
+                 iconePressionado = new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Adicionar-onHover-30x30.png"));
+                 break;
+            case "remove":
+                iconePadrao = new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Diminuir-30x30.png"));
+                iconePressionado = new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Diminuir-onHover-30x30.png"));
+                break;
+            case "fechar":
+                iconePadrao = new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Fechar-26x26.png"));
+                iconePressionado = new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Fechar-onHover-26x26.png"));
+                break;
+            case "minimizar":
+                iconePadrao = new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Minimizar-26x26.png"));
+                iconePressionado = new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Minimizar-onHover-26x26.png"));
+                break;
+            case "editar":
+                iconePadrao = new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Editar-30x30.png"));
+                iconePressionado = new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Editar-onHover-30x30.png"));
+                break;
+            case "confirmar":
+                iconePadrao = new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Confirmar-30x30.png"));
+                iconePressionado = new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Confirmar-onHover-30x30.png"));
+                break;
+            case "cancelar":
+                iconePadrao = new javax.swing.ImageIcon(getClass().getResource("/view/images/icone-Cancelar-30x30.png"));
+                iconePressionado = new javax.swing.ImageIcon(getClass().getResource("/view/images/icone-Cancelar-onHover-30x30.png"));
+                break;
+        }
+        if (ativo) {
+            button.setIcon(iconePressionado);   
+        } else {
+            button.setIcon(iconePadrao);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         painelSuperior = new javax.swing.JPanel();
-        ButtonFechar = new javax.swing.JButton();
-        ButtonMinimizar = new javax.swing.JButton();
+        buttonFechar = new javax.swing.JButton();
+        buttonMinimizar = new javax.swing.JButton();
         labelTitulo = new javax.swing.JLabel();
         painelLateral = new javax.swing.JPanel();
         painelMenuPratos = new javax.swing.JPanel();
@@ -172,18 +214,21 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonRemoveArrozP1 = new javax.swing.JButton();
         buttonAddArrozP1 = new javax.swing.JButton();
         iconeArrozP1 = new javax.swing.JLabel();
+        textoPrato1Arroz = new javax.swing.JLabel();
         painelCarneP1 = new javax.swing.JPanel();
         labelQtdeCarneP1 = new javax.swing.JLabel();
         iconeCirculoCarneP1 = new javax.swing.JLabel();
         buttonRemoveCarneP1 = new javax.swing.JButton();
         buttonAddCarneP1 = new javax.swing.JButton();
         iconeCarneP1 = new javax.swing.JLabel();
+        textoPrato1Arroz1 = new javax.swing.JLabel();
         painelSaladaP1 = new javax.swing.JPanel();
         labelQtdeSaladaP1 = new javax.swing.JLabel();
         iconeCirculoSaladaP1 = new javax.swing.JLabel();
         buttonRemoveSaladaP1 = new javax.swing.JButton();
         buttonAddSaladaP1 = new javax.swing.JButton();
         iconeSaladaP1 = new javax.swing.JLabel();
+        textoPrato1Arroz2 = new javax.swing.JLabel();
         painelPrecoP1 = new javax.swing.JPanel();
         labelRsP1 = new javax.swing.JLabel();
         labelPrecoP1 = new javax.swing.JLabel();
@@ -199,18 +244,21 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonRemoveArrozP2 = new javax.swing.JButton();
         buttonAddArrozP2 = new javax.swing.JButton();
         iconeArrozP2 = new javax.swing.JLabel();
+        textoPrato1Arroz3 = new javax.swing.JLabel();
         painelCarneP2 = new javax.swing.JPanel();
         labelQtdeCarneP2 = new javax.swing.JLabel();
         iconeCirculoCarneP2 = new javax.swing.JLabel();
         buttonRemoveCarneP2 = new javax.swing.JButton();
         buttonAddCarneP2 = new javax.swing.JButton();
         iconeCarneP2 = new javax.swing.JLabel();
+        textoPrato1Arroz5 = new javax.swing.JLabel();
         painelSaladaP2 = new javax.swing.JPanel();
         labelQtdeSaladaP2 = new javax.swing.JLabel();
         iconeCirculoSaladaP2 = new javax.swing.JLabel();
         buttonRemoveSaladaP2 = new javax.swing.JButton();
         buttonAddSaladaP2 = new javax.swing.JButton();
         iconeSaladaP2 = new javax.swing.JLabel();
+        textoPrato1Arroz7 = new javax.swing.JLabel();
         painelPrecoP2 = new javax.swing.JPanel();
         labelRsP2 = new javax.swing.JLabel();
         labelPrecoP2 = new javax.swing.JLabel();
@@ -226,18 +274,21 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonRemoveArrozP3 = new javax.swing.JButton();
         buttonAddArrozP3 = new javax.swing.JButton();
         iconeArrozP3 = new javax.swing.JLabel();
+        textoPrato1Arroz4 = new javax.swing.JLabel();
         painelCarneP3 = new javax.swing.JPanel();
         labelQtdeCarneP3 = new javax.swing.JLabel();
         buttonAddCarneP3 = new javax.swing.JButton();
         buttonRemoveCarneP3 = new javax.swing.JButton();
         iconeCirculoCarneP3 = new javax.swing.JLabel();
         iconeCarneP3 = new javax.swing.JLabel();
+        textoPrato1Arroz6 = new javax.swing.JLabel();
         painelSaladaP3 = new javax.swing.JPanel();
         labelQtdeSaladaP3 = new javax.swing.JLabel();
         iconeCirculoSaladaP3 = new javax.swing.JLabel();
         buttonAddSaladaP3 = new javax.swing.JButton();
         buttonRemoveSaladaP3 = new javax.swing.JButton();
         iconeSaladaP3 = new javax.swing.JLabel();
+        textoPrato1Arroz8 = new javax.swing.JLabel();
         painelPrecoP3 = new javax.swing.JPanel();
         labelRsP3 = new javax.swing.JLabel();
         labelPrecoP3 = new javax.swing.JLabel();
@@ -252,35 +303,48 @@ public final class TelaPratos extends javax.swing.JFrame {
         painelSuperior.setPreferredSize(new java.awt.Dimension(1366, 35));
         painelSuperior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Fechar-26x26.png"))); // NOI18N
-        ButtonFechar.setBorder(null);
-        ButtonFechar.setBorderPainted(false);
-        ButtonFechar.setContentAreaFilled(false);
-        ButtonFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ButtonFechar.setPreferredSize(new java.awt.Dimension(28, 28));
-        ButtonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Fechar-26x26.png"))); // NOI18N
+        buttonFechar.setBorder(null);
+        buttonFechar.setBorderPainted(false);
+        buttonFechar.setContentAreaFilled(false);
+        buttonFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ButtonFecharMouseClicked(evt);
+                buttonFecharMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonFecharMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonFecharMouseExited(evt);
             }
         });
-        ButtonFechar.addActionListener(new java.awt.event.ActionListener() {
+        buttonFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonFecharActionPerformed(evt);
+                buttonFecharActionPerformed(evt);
             }
         });
-        painelSuperior.add(ButtonFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1332, 6, -1, -1));
+        painelSuperior.add(buttonFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1332, 6, -1, -1));
 
-        ButtonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Minimizar-26x26.png"))); // NOI18N
-        ButtonMinimizar.setBorder(null);
-        ButtonMinimizar.setBorderPainted(false);
-        ButtonMinimizar.setContentAreaFilled(false);
-        ButtonMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ButtonMinimizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonMinimizarActionPerformed(evt);
+        buttonMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Minimizar-26x26.png"))); // NOI18N
+        buttonMinimizar.setBorder(null);
+        buttonMinimizar.setBorderPainted(false);
+        buttonMinimizar.setContentAreaFilled(false);
+        buttonMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonMinimizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonMinimizarMouseExited(evt);
             }
         });
-        painelSuperior.add(ButtonMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1299, 7, -1, -1));
+        buttonMinimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMinimizarActionPerformed(evt);
+            }
+        });
+        painelSuperior.add(buttonMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1299, 7, -1, -1));
 
         labelTitulo.setBackground(new java.awt.Color(242, 242, 235));
         labelTitulo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -369,7 +433,7 @@ public final class TelaPratos extends javax.swing.JFrame {
         painelP1.add(iconeP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
         painelArrozP1.setBackground(new java.awt.Color(242, 242, 235));
-        painelArrozP1.setPreferredSize(new java.awt.Dimension(140, 140));
+        painelArrozP1.setPreferredSize(new java.awt.Dimension(140, 160));
         painelArrozP1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelQtdeArrozP1.setBackground(new java.awt.Color(242, 242, 235));
@@ -393,6 +457,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonRemoveArrozP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonRemoveArrozP1.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonRemoveArrozP1.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonRemoveArrozP1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonRemoveArrozP1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonRemoveArrozP1MouseExited(evt);
+            }
+        });
         buttonRemoveArrozP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveArrozP1ActionPerformed(evt);
@@ -407,6 +479,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonAddArrozP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonAddArrozP1.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonAddArrozP1.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonAddArrozP1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonAddArrozP1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonAddArrozP1MouseExited(evt);
+            }
+        });
         buttonAddArrozP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddArrozP1ActionPerformed(evt);
@@ -418,10 +498,15 @@ public final class TelaPratos extends javax.swing.JFrame {
         iconeArrozP1.setPreferredSize(new java.awt.Dimension(100, 100));
         painelArrozP1.add(iconeArrozP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 30, -1, -1));
 
+        textoPrato1Arroz.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        textoPrato1Arroz.setForeground(new java.awt.Color(26, 26, 26));
+        textoPrato1Arroz.setText("Arroz");
+        painelArrozP1.add(textoPrato1Arroz, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 140, -1, 20));
+
         painelP1.add(painelArrozP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
 
         painelCarneP1.setBackground(new java.awt.Color(242, 242, 235));
-        painelCarneP1.setPreferredSize(new java.awt.Dimension(140, 140));
+        painelCarneP1.setPreferredSize(new java.awt.Dimension(140, 160));
         painelCarneP1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelQtdeCarneP1.setBackground(new java.awt.Color(242, 242, 235));
@@ -445,6 +530,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonRemoveCarneP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonRemoveCarneP1.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonRemoveCarneP1.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonRemoveCarneP1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonRemoveCarneP1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonRemoveCarneP1MouseExited(evt);
+            }
+        });
         buttonRemoveCarneP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveCarneP1ActionPerformed(evt);
@@ -459,6 +552,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonAddCarneP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonAddCarneP1.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonAddCarneP1.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonAddCarneP1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonAddCarneP1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonAddCarneP1MouseExited(evt);
+            }
+        });
         buttonAddCarneP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddCarneP1ActionPerformed(evt);
@@ -469,10 +570,15 @@ public final class TelaPratos extends javax.swing.JFrame {
         iconeCarneP1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Carne.png"))); // NOI18N
         painelCarneP1.add(iconeCarneP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
+        textoPrato1Arroz1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        textoPrato1Arroz1.setForeground(new java.awt.Color(26, 26, 26));
+        textoPrato1Arroz1.setText("Carne");
+        painelCarneP1.add(textoPrato1Arroz1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, 20));
+
         painelP1.add(painelCarneP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
 
         painelSaladaP1.setBackground(new java.awt.Color(242, 242, 235));
-        painelSaladaP1.setPreferredSize(new java.awt.Dimension(140, 140));
+        painelSaladaP1.setPreferredSize(new java.awt.Dimension(140, 160));
         painelSaladaP1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelQtdeSaladaP1.setBackground(new java.awt.Color(242, 242, 235));
@@ -496,6 +602,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonRemoveSaladaP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonRemoveSaladaP1.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonRemoveSaladaP1.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonRemoveSaladaP1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonRemoveSaladaP1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonRemoveSaladaP1MouseExited(evt);
+            }
+        });
         buttonRemoveSaladaP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveSaladaP1ActionPerformed(evt);
@@ -510,6 +624,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonAddSaladaP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonAddSaladaP1.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonAddSaladaP1.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonAddSaladaP1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonAddSaladaP1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonAddSaladaP1MouseExited(evt);
+            }
+        });
         buttonAddSaladaP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddSaladaP1ActionPerformed(evt);
@@ -519,6 +641,11 @@ public final class TelaPratos extends javax.swing.JFrame {
 
         iconeSaladaP1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Salada.png"))); // NOI18N
         painelSaladaP1.add(iconeSaladaP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 30, -1, -1));
+
+        textoPrato1Arroz2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        textoPrato1Arroz2.setForeground(new java.awt.Color(26, 26, 26));
+        textoPrato1Arroz2.setText("Salada");
+        painelSaladaP1.add(textoPrato1Arroz2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, 20));
 
         painelP1.add(painelSaladaP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, -1, -1));
 
@@ -568,6 +695,7 @@ public final class TelaPratos extends javax.swing.JFrame {
         painelP2.add(iconeP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
         painelArrozP2.setBackground(new java.awt.Color(242, 242, 235));
+        painelArrozP2.setPreferredSize(new java.awt.Dimension(140, 160));
         painelArrozP2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelQtdeArrozP2.setBackground(new java.awt.Color(242, 242, 235));
@@ -591,6 +719,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonRemoveArrozP2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonRemoveArrozP2.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonRemoveArrozP2.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonRemoveArrozP2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonRemoveArrozP2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonRemoveArrozP2MouseExited(evt);
+            }
+        });
         buttonRemoveArrozP2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveArrozP2ActionPerformed(evt);
@@ -605,6 +741,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonAddArrozP2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonAddArrozP2.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonAddArrozP2.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonAddArrozP2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonAddArrozP2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonAddArrozP2MouseExited(evt);
+            }
+        });
         buttonAddArrozP2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddArrozP2ActionPerformed(evt);
@@ -616,10 +760,15 @@ public final class TelaPratos extends javax.swing.JFrame {
         iconeArrozP2.setPreferredSize(new java.awt.Dimension(100, 100));
         painelArrozP2.add(iconeArrozP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 30, -1, -1));
 
-        painelP2.add(painelArrozP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 140, 140));
+        textoPrato1Arroz3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        textoPrato1Arroz3.setForeground(new java.awt.Color(26, 26, 26));
+        textoPrato1Arroz3.setText("Arroz");
+        painelArrozP2.add(textoPrato1Arroz3, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 140, -1, 20));
+
+        painelP2.add(painelArrozP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
 
         painelCarneP2.setBackground(new java.awt.Color(242, 242, 235));
-        painelCarneP2.setPreferredSize(new java.awt.Dimension(140, 140));
+        painelCarneP2.setPreferredSize(new java.awt.Dimension(140, 160));
         painelCarneP2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelQtdeCarneP2.setBackground(new java.awt.Color(242, 242, 235));
@@ -643,6 +792,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonRemoveCarneP2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonRemoveCarneP2.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonRemoveCarneP2.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonRemoveCarneP2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonRemoveCarneP2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonRemoveCarneP2MouseExited(evt);
+            }
+        });
         buttonRemoveCarneP2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveCarneP2ActionPerformed(evt);
@@ -657,6 +814,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonAddCarneP2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonAddCarneP2.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonAddCarneP2.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonAddCarneP2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonAddCarneP2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonAddCarneP2MouseExited(evt);
+            }
+        });
         buttonAddCarneP2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddCarneP2ActionPerformed(evt);
@@ -667,10 +832,15 @@ public final class TelaPratos extends javax.swing.JFrame {
         iconeCarneP2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Carne.png"))); // NOI18N
         painelCarneP2.add(iconeCarneP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
+        textoPrato1Arroz5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        textoPrato1Arroz5.setForeground(new java.awt.Color(26, 26, 26));
+        textoPrato1Arroz5.setText("Carne");
+        painelCarneP2.add(textoPrato1Arroz5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, 20));
+
         painelP2.add(painelCarneP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
 
         painelSaladaP2.setBackground(new java.awt.Color(242, 242, 235));
-        painelSaladaP2.setPreferredSize(new java.awt.Dimension(140, 140));
+        painelSaladaP2.setPreferredSize(new java.awt.Dimension(140, 160));
         painelSaladaP2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelQtdeSaladaP2.setBackground(new java.awt.Color(242, 242, 235));
@@ -694,6 +864,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonRemoveSaladaP2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonRemoveSaladaP2.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonRemoveSaladaP2.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonRemoveSaladaP2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonRemoveSaladaP2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonRemoveSaladaP2MouseExited(evt);
+            }
+        });
         buttonRemoveSaladaP2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveSaladaP2ActionPerformed(evt);
@@ -708,6 +886,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonAddSaladaP2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonAddSaladaP2.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonAddSaladaP2.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonAddSaladaP2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonAddSaladaP2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonAddSaladaP2MouseExited(evt);
+            }
+        });
         buttonAddSaladaP2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddSaladaP2ActionPerformed(evt);
@@ -717,6 +903,11 @@ public final class TelaPratos extends javax.swing.JFrame {
 
         iconeSaladaP2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Salada.png"))); // NOI18N
         painelSaladaP2.add(iconeSaladaP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 30, -1, -1));
+
+        textoPrato1Arroz7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        textoPrato1Arroz7.setForeground(new java.awt.Color(26, 26, 26));
+        textoPrato1Arroz7.setText("Salada");
+        painelSaladaP2.add(textoPrato1Arroz7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, 20));
 
         painelP2.add(painelSaladaP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, -1, -1));
 
@@ -766,6 +957,7 @@ public final class TelaPratos extends javax.swing.JFrame {
         painelP3.add(iconeP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
         painelArrozP3.setBackground(new java.awt.Color(242, 242, 235));
+        painelArrozP3.setPreferredSize(new java.awt.Dimension(140, 160));
         painelArrozP3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelQtdeArrozP3.setBackground(new java.awt.Color(242, 242, 235));
@@ -789,6 +981,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonRemoveArrozP3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonRemoveArrozP3.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonRemoveArrozP3.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonRemoveArrozP3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonRemoveArrozP3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonRemoveArrozP3MouseExited(evt);
+            }
+        });
         buttonRemoveArrozP3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveArrozP3ActionPerformed(evt);
@@ -803,6 +1003,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonAddArrozP3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonAddArrozP3.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonAddArrozP3.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonAddArrozP3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonAddArrozP3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonAddArrozP3MouseExited(evt);
+            }
+        });
         buttonAddArrozP3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddArrozP3ActionPerformed(evt);
@@ -814,10 +1022,15 @@ public final class TelaPratos extends javax.swing.JFrame {
         iconeArrozP3.setPreferredSize(new java.awt.Dimension(100, 100));
         painelArrozP3.add(iconeArrozP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 30, -1, -1));
 
-        painelP3.add(painelArrozP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 140, 140));
+        textoPrato1Arroz4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        textoPrato1Arroz4.setForeground(new java.awt.Color(26, 26, 26));
+        textoPrato1Arroz4.setText("Arroz");
+        painelArrozP3.add(textoPrato1Arroz4, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 140, -1, 20));
+
+        painelP3.add(painelArrozP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
 
         painelCarneP3.setBackground(new java.awt.Color(242, 242, 235));
-        painelCarneP3.setPreferredSize(new java.awt.Dimension(140, 140));
+        painelCarneP3.setPreferredSize(new java.awt.Dimension(140, 160));
         painelCarneP3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelQtdeCarneP3.setBackground(new java.awt.Color(242, 242, 235));
@@ -838,6 +1051,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonAddCarneP3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonAddCarneP3.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonAddCarneP3.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonAddCarneP3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonAddCarneP3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonAddCarneP3MouseExited(evt);
+            }
+        });
         buttonAddCarneP3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddCarneP3ActionPerformed(evt);
@@ -852,6 +1073,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonRemoveCarneP3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonRemoveCarneP3.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonRemoveCarneP3.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonRemoveCarneP3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonRemoveCarneP3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonRemoveCarneP3MouseExited(evt);
+            }
+        });
         buttonRemoveCarneP3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveCarneP3ActionPerformed(evt);
@@ -865,10 +1094,15 @@ public final class TelaPratos extends javax.swing.JFrame {
         iconeCarneP3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Carne.png"))); // NOI18N
         painelCarneP3.add(iconeCarneP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
+        textoPrato1Arroz6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        textoPrato1Arroz6.setForeground(new java.awt.Color(26, 26, 26));
+        textoPrato1Arroz6.setText("Carne");
+        painelCarneP3.add(textoPrato1Arroz6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, 20));
+
         painelP3.add(painelCarneP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
 
         painelSaladaP3.setBackground(new java.awt.Color(242, 242, 235));
-        painelSaladaP3.setPreferredSize(new java.awt.Dimension(140, 140));
+        painelSaladaP3.setPreferredSize(new java.awt.Dimension(140, 160));
         painelSaladaP3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelQtdeSaladaP3.setBackground(new java.awt.Color(242, 242, 235));
@@ -892,6 +1126,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonAddSaladaP3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonAddSaladaP3.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonAddSaladaP3.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonAddSaladaP3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonAddSaladaP3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonAddSaladaP3MouseExited(evt);
+            }
+        });
         buttonAddSaladaP3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddSaladaP3ActionPerformed(evt);
@@ -906,6 +1148,14 @@ public final class TelaPratos extends javax.swing.JFrame {
         buttonRemoveSaladaP3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonRemoveSaladaP3.setMaximumSize(new java.awt.Dimension(18, 18));
         buttonRemoveSaladaP3.setMinimumSize(new java.awt.Dimension(18, 18));
+        buttonRemoveSaladaP3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonRemoveSaladaP3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonRemoveSaladaP3MouseExited(evt);
+            }
+        });
         buttonRemoveSaladaP3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRemoveSaladaP3ActionPerformed(evt);
@@ -915,6 +1165,11 @@ public final class TelaPratos extends javax.swing.JFrame {
 
         iconeSaladaP3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Salada.png"))); // NOI18N
         painelSaladaP3.add(iconeSaladaP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 30, -1, -1));
+
+        textoPrato1Arroz8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        textoPrato1Arroz8.setForeground(new java.awt.Color(26, 26, 26));
+        textoPrato1Arroz8.setText("Salada");
+        painelSaladaP3.add(textoPrato1Arroz8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, 20));
 
         painelP3.add(painelSaladaP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, -1, -1));
 
@@ -943,17 +1198,17 @@ public final class TelaPratos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ButtonFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonFecharMouseClicked
+    private void buttonFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonFecharMouseClicked
 
-    }//GEN-LAST:event_ButtonFecharMouseClicked
+    }//GEN-LAST:event_buttonFecharMouseClicked
 
-    private void ButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonFecharActionPerformed
+    private void buttonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFecharActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_ButtonFecharActionPerformed
+    }//GEN-LAST:event_buttonFecharActionPerformed
 
-    private void ButtonMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonMinimizarActionPerformed
+    private void buttonMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMinimizarActionPerformed
         setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_ButtonMinimizarActionPerformed
+    }//GEN-LAST:event_buttonMinimizarActionPerformed
 
     private void painelMenuPorcoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelMenuPorcoesMouseClicked
         mostrarTelaPorcoes();
@@ -1078,9 +1333,167 @@ public final class TelaPratos extends javax.swing.JFrame {
         atualizarQtdePorcoesPrato3();
     }//GEN-LAST:event_buttonRemoveSaladaP3ActionPerformed
 
+    private void buttonAddArrozP1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddArrozP1MouseEntered
+        animacaoBotaoPressionado("add", buttonAddArrozP1, true);
+    }//GEN-LAST:event_buttonAddArrozP1MouseEntered
+
+    private void buttonAddArrozP1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddArrozP1MouseExited
+        animacaoBotaoPressionado("add", buttonAddArrozP1, false);
+    }//GEN-LAST:event_buttonAddArrozP1MouseExited
+
+    private void buttonRemoveArrozP1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveArrozP1MouseEntered
+        animacaoBotaoPressionado("remove", buttonRemoveArrozP1, true);
+    }//GEN-LAST:event_buttonRemoveArrozP1MouseEntered
+
+    private void buttonRemoveArrozP1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveArrozP1MouseExited
+        animacaoBotaoPressionado("remove", buttonRemoveArrozP1, false);
+    }//GEN-LAST:event_buttonRemoveArrozP1MouseExited
+
+    private void buttonAddCarneP1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddCarneP1MouseEntered
+        animacaoBotaoPressionado("add", buttonAddCarneP1, true);
+    }//GEN-LAST:event_buttonAddCarneP1MouseEntered
+
+    private void buttonAddCarneP1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddCarneP1MouseExited
+        animacaoBotaoPressionado("add", buttonAddCarneP1, false);
+    }//GEN-LAST:event_buttonAddCarneP1MouseExited
+
+    private void buttonRemoveCarneP1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveCarneP1MouseEntered
+        animacaoBotaoPressionado("remove", buttonRemoveCarneP1, true);
+    }//GEN-LAST:event_buttonRemoveCarneP1MouseEntered
+
+    private void buttonRemoveCarneP1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveCarneP1MouseExited
+        animacaoBotaoPressionado("remove", buttonRemoveCarneP1, false);
+    }//GEN-LAST:event_buttonRemoveCarneP1MouseExited
+
+    private void buttonAddSaladaP1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddSaladaP1MouseEntered
+        animacaoBotaoPressionado("add", buttonAddSaladaP1, true);
+    }//GEN-LAST:event_buttonAddSaladaP1MouseEntered
+
+    private void buttonAddSaladaP1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddSaladaP1MouseExited
+        animacaoBotaoPressionado("add", buttonAddSaladaP1, false);
+    }//GEN-LAST:event_buttonAddSaladaP1MouseExited
+
+    private void buttonRemoveSaladaP1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveSaladaP1MouseEntered
+        animacaoBotaoPressionado("remove", buttonRemoveSaladaP1, true);
+    }//GEN-LAST:event_buttonRemoveSaladaP1MouseEntered
+
+    private void buttonRemoveSaladaP1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveSaladaP1MouseExited
+        animacaoBotaoPressionado("remove", buttonRemoveSaladaP1, false);
+    }//GEN-LAST:event_buttonRemoveSaladaP1MouseExited
+
+    private void buttonAddArrozP2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddArrozP2MouseEntered
+        animacaoBotaoPressionado("add", buttonAddArrozP2, true);
+    }//GEN-LAST:event_buttonAddArrozP2MouseEntered
+
+    private void buttonAddArrozP2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddArrozP2MouseExited
+        animacaoBotaoPressionado("add", buttonAddArrozP2, false);
+    }//GEN-LAST:event_buttonAddArrozP2MouseExited
+
+    private void buttonRemoveArrozP2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveArrozP2MouseEntered
+        animacaoBotaoPressionado("remove", buttonRemoveArrozP2, true);
+    }//GEN-LAST:event_buttonRemoveArrozP2MouseEntered
+
+    private void buttonRemoveArrozP2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveArrozP2MouseExited
+        animacaoBotaoPressionado("remove", buttonRemoveArrozP2, false);
+    }//GEN-LAST:event_buttonRemoveArrozP2MouseExited
+
+    private void buttonAddCarneP2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddCarneP2MouseEntered
+       animacaoBotaoPressionado("add", buttonAddCarneP2, true);
+    }//GEN-LAST:event_buttonAddCarneP2MouseEntered
+
+    private void buttonAddCarneP2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddCarneP2MouseExited
+        animacaoBotaoPressionado("add", buttonAddCarneP2, false);
+    }//GEN-LAST:event_buttonAddCarneP2MouseExited
+
+    private void buttonRemoveCarneP2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveCarneP2MouseEntered
+        animacaoBotaoPressionado("remove", buttonRemoveCarneP2, true);
+    }//GEN-LAST:event_buttonRemoveCarneP2MouseEntered
+
+    private void buttonRemoveCarneP2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveCarneP2MouseExited
+        animacaoBotaoPressionado("remove", buttonRemoveCarneP2, false);
+    }//GEN-LAST:event_buttonRemoveCarneP2MouseExited
+
+    private void buttonAddSaladaP2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddSaladaP2MouseEntered
+       animacaoBotaoPressionado("add", buttonAddSaladaP2, true);
+    }//GEN-LAST:event_buttonAddSaladaP2MouseEntered
+
+    private void buttonAddSaladaP2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddSaladaP2MouseExited
+        animacaoBotaoPressionado("add", buttonAddSaladaP2, false);
+    }//GEN-LAST:event_buttonAddSaladaP2MouseExited
+
+    private void buttonRemoveSaladaP2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveSaladaP2MouseEntered
+        animacaoBotaoPressionado("remove", buttonRemoveSaladaP2, true);
+    }//GEN-LAST:event_buttonRemoveSaladaP2MouseEntered
+
+    private void buttonRemoveSaladaP2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveSaladaP2MouseExited
+       animacaoBotaoPressionado("remove", buttonRemoveSaladaP2, false);
+    }//GEN-LAST:event_buttonRemoveSaladaP2MouseExited
+
+    private void buttonAddArrozP3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddArrozP3MouseEntered
+        animacaoBotaoPressionado("add", buttonAddArrozP3, true);
+    }//GEN-LAST:event_buttonAddArrozP3MouseEntered
+
+    private void buttonAddArrozP3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddArrozP3MouseExited
+       animacaoBotaoPressionado("add", buttonAddArrozP3, false);
+    }//GEN-LAST:event_buttonAddArrozP3MouseExited
+
+    private void buttonRemoveArrozP3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveArrozP3MouseEntered
+        animacaoBotaoPressionado("remove", buttonRemoveArrozP3, true);
+    }//GEN-LAST:event_buttonRemoveArrozP3MouseEntered
+
+    private void buttonRemoveArrozP3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveArrozP3MouseExited
+        animacaoBotaoPressionado("remove", buttonRemoveArrozP3, false);
+    }//GEN-LAST:event_buttonRemoveArrozP3MouseExited
+
+    private void buttonAddCarneP3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddCarneP3MouseEntered
+        animacaoBotaoPressionado("add", buttonAddCarneP3, true);
+    }//GEN-LAST:event_buttonAddCarneP3MouseEntered
+
+    private void buttonAddCarneP3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddCarneP3MouseExited
+        animacaoBotaoPressionado("add", buttonAddCarneP3, false);
+    }//GEN-LAST:event_buttonAddCarneP3MouseExited
+
+    private void buttonRemoveCarneP3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveCarneP3MouseEntered
+        animacaoBotaoPressionado("remove", buttonRemoveCarneP3, true);
+    }//GEN-LAST:event_buttonRemoveCarneP3MouseEntered
+
+    private void buttonRemoveCarneP3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveCarneP3MouseExited
+        animacaoBotaoPressionado("remove", buttonRemoveCarneP3, false);
+    }//GEN-LAST:event_buttonRemoveCarneP3MouseExited
+
+    private void buttonAddSaladaP3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddSaladaP3MouseEntered
+        animacaoBotaoPressionado("add", buttonAddSaladaP3, true);
+    }//GEN-LAST:event_buttonAddSaladaP3MouseEntered
+
+    private void buttonAddSaladaP3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddSaladaP3MouseExited
+        animacaoBotaoPressionado("add", buttonAddSaladaP3, false);
+    }//GEN-LAST:event_buttonAddSaladaP3MouseExited
+
+    private void buttonRemoveSaladaP3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveSaladaP3MouseEntered
+        animacaoBotaoPressionado("remove", buttonRemoveSaladaP3, true);
+    }//GEN-LAST:event_buttonRemoveSaladaP3MouseEntered
+
+    private void buttonRemoveSaladaP3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRemoveSaladaP3MouseExited
+        animacaoBotaoPressionado("remove", buttonRemoveSaladaP3, false);
+    }//GEN-LAST:event_buttonRemoveSaladaP3MouseExited
+
+    private void buttonFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonFecharMouseEntered
+        animacaoBotaoPressionado("fechar", buttonFechar, true);
+    }//GEN-LAST:event_buttonFecharMouseEntered
+
+    private void buttonFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonFecharMouseExited
+        animacaoBotaoPressionado("fechar", buttonFechar, false);
+    }//GEN-LAST:event_buttonFecharMouseExited
+
+    private void buttonMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonMinimizarMouseEntered
+        animacaoBotaoPressionado("minimizar", buttonMinimizar, true);
+    }//GEN-LAST:event_buttonMinimizarMouseEntered
+
+    private void buttonMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonMinimizarMouseExited
+        animacaoBotaoPressionado("minimizar", buttonMinimizar, false);
+    }//GEN-LAST:event_buttonMinimizarMouseExited
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonFechar;
-    private javax.swing.JButton ButtonMinimizar;
     private javax.swing.JButton buttonAddArrozP1;
     private javax.swing.JButton buttonAddArrozP2;
     private javax.swing.JButton buttonAddArrozP3;
@@ -1090,6 +1503,8 @@ public final class TelaPratos extends javax.swing.JFrame {
     private javax.swing.JButton buttonAddSaladaP1;
     private javax.swing.JButton buttonAddSaladaP2;
     private javax.swing.JButton buttonAddSaladaP3;
+    private javax.swing.JButton buttonFechar;
+    private javax.swing.JButton buttonMinimizar;
     private javax.swing.JButton buttonRemoveArrozP1;
     private javax.swing.JButton buttonRemoveArrozP2;
     private javax.swing.JButton buttonRemoveArrozP3;
@@ -1172,5 +1587,14 @@ public final class TelaPratos extends javax.swing.JFrame {
     private javax.swing.JPanel painelTituloP3;
     private javax.swing.JLabel textoMenuPorcoes;
     private javax.swing.JLabel textoMenuPratos;
+    private javax.swing.JLabel textoPrato1Arroz;
+    private javax.swing.JLabel textoPrato1Arroz1;
+    private javax.swing.JLabel textoPrato1Arroz2;
+    private javax.swing.JLabel textoPrato1Arroz3;
+    private javax.swing.JLabel textoPrato1Arroz4;
+    private javax.swing.JLabel textoPrato1Arroz5;
+    private javax.swing.JLabel textoPrato1Arroz6;
+    private javax.swing.JLabel textoPrato1Arroz7;
+    private javax.swing.JLabel textoPrato1Arroz8;
     // End of variables declaration//GEN-END:variables
 }
