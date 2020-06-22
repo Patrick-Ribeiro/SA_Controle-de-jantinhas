@@ -21,7 +21,7 @@ public class TelaCarregamento {
 
         Toolkit toolKit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolKit.getScreenSize();
-        telaCarregamento.setBounds((dimension.width - LARGURA_GIF) / 2, (dimension.height - ALTURA_GIF) / 2, LARGURA_GIF, ALTURA_GIF);;
+        telaCarregamento.setBounds((dimension.width - LARGURA_GIF) / 2, (dimension.height - ALTURA_GIF) / 2, LARGURA_GIF, ALTURA_GIF);
         telaCarregamento.setVisible(true);
         
         try{

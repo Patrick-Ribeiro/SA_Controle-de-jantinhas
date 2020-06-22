@@ -3,6 +3,7 @@ package view;
 import controller.Receptor;
 import controller.Transmissor;
 import java.awt.Color;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static programa.Main.telaPratos;
@@ -22,39 +23,11 @@ public class TelaPorcoes extends javax.swing.JFrame {
         atualizarQtdePorcoes();
         esconderBotoesEdicao();
         destivarCampos();
+        setIcon();
     }
-
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPorcoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPorcoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPorcoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPorcoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaPorcoes().setVisible(true);
-            }
-        });
+    
+    private void setIcon(){
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/view/images/icone.png")));
     }
 
     protected final void atualizarPrecoPorcoes() {
@@ -136,6 +109,8 @@ public class TelaPorcoes extends javax.swing.JFrame {
 
     private void desfazerAlteracoes() {
         textFieldPrecoArroz.setText(precoAtualArroz);
+        textFieldPrecoCarne.setText(precoAtualCarne);
+        textFieldPrecoSalada.setText(precoAtualSalada);
     }
 
     private void esconderTelaPorcoes() {
@@ -183,6 +158,8 @@ public class TelaPorcoes extends javax.swing.JFrame {
         if (ativado) {
             buttonEditarArroz.setVisible(false);
             precoAtualArroz = getPrecoTextFieldArroz();
+            precoAtualCarne = getPrecoTextFieldCarne();
+            precoAtualSalada = getPrecoTextFieldSalada();
         } else {
             buttonEditarArroz.setVisible(true);
         }
@@ -195,7 +172,9 @@ public class TelaPorcoes extends javax.swing.JFrame {
     private void setModoEdicaoCarne(boolean ativado) {
         if (ativado) {
             buttonEditarCarne.setVisible(false);
+            precoAtualArroz = getPrecoTextFieldArroz();
             precoAtualCarne = getPrecoTextFieldCarne();
+            precoAtualSalada = getPrecoTextFieldSalada();
         } else {
             buttonEditarCarne.setVisible(true);
         }
@@ -208,6 +187,8 @@ public class TelaPorcoes extends javax.swing.JFrame {
     private void setModoEdicaoSalada(boolean ativado) {
         if (ativado) {
             buttonEditarSalada.setVisible(false);
+            precoAtualArroz = getPrecoTextFieldArroz();
+            precoAtualCarne = getPrecoTextFieldCarne();
             precoAtualSalada = getPrecoTextFieldSalada();
         } else {
             buttonEditarSalada.setVisible(true);
@@ -394,17 +375,6 @@ public class TelaPorcoes extends javax.swing.JFrame {
         painelMenuPorcoes.setBackground(new java.awt.Color(48, 48, 47));
         painelMenuPorcoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         painelMenuPorcoes.setPreferredSize(new java.awt.Dimension(360, 90));
-        painelMenuPorcoes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                painelMenuPorcoesMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                painelMenuPorcoesMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                painelMenuPorcoesMouseExited(evt);
-            }
-        });
         painelMenuPorcoes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         iconeMenuPorcoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Icone-Porcoes-65x65.png"))); // NOI18N
@@ -429,9 +399,6 @@ public class TelaPorcoes extends javax.swing.JFrame {
         buttonFechar.setContentAreaFilled(false);
         buttonFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonFechar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonFecharMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonFecharMouseEntered(evt);
             }
@@ -1144,23 +1111,8 @@ public class TelaPorcoes extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void painelMenuPorcoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelMenuPorcoesMouseClicked
-
-    }//GEN-LAST:event_painelMenuPorcoesMouseClicked
-
-    private void painelMenuPorcoesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelMenuPorcoesMouseExited
-
-    }//GEN-LAST:event_painelMenuPorcoesMouseExited
-
-    private void painelMenuPorcoesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelMenuPorcoesMouseEntered
-
-    }//GEN-LAST:event_painelMenuPorcoesMouseEntered
-
-    private void buttonFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonFecharMouseClicked
-
-    }//GEN-LAST:event_buttonFecharMouseClicked
-
+    
+    // <editor-fold defaultstate="collapsed" desc="Eventos de janela"> 
     private void buttonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFecharActionPerformed
         System.exit(0);
     }//GEN-LAST:event_buttonFecharActionPerformed
@@ -1168,7 +1120,9 @@ public class TelaPorcoes extends javax.swing.JFrame {
     private void buttonMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMinimizarActionPerformed
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_buttonMinimizarActionPerformed
-
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Eventos do menu lateral">
     private void painelMenuPratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelMenuPratosMouseClicked
         mostrarTelaPratos();
     }//GEN-LAST:event_painelMenuPratosMouseClicked
@@ -1182,7 +1136,9 @@ public class TelaPorcoes extends javax.swing.JFrame {
         painelMenuPratos.setBackground(Color.decode("#1A1A1A"));
         painelMenuPorcoes.setBackground(Color.decode("#30302F"));
     }//GEN-LAST:event_painelMenuPratosMouseExited
-
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Eventos dos botões de edição">
     private void buttonEditarArrozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarArrozActionPerformed
         setModoEdicaoArroz(true);  
     }//GEN-LAST:event_buttonEditarArrozActionPerformed
@@ -1198,14 +1154,16 @@ public class TelaPorcoes extends javax.swing.JFrame {
 
     private void buttonCancelarCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarCarneActionPerformed
         setModoEdicaoCarne(false);
+        desfazerAlteracoes();
     }//GEN-LAST:event_buttonCancelarCarneActionPerformed
-
+    
     private void buttonEditarSaladaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarSaladaActionPerformed
         setModoEdicaoSalada(true);
     }//GEN-LAST:event_buttonEditarSaladaActionPerformed
 
     private void buttonCancelarSaladaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarSaladaActionPerformed
         setModoEdicaoSalada(false);
+        desfazerAlteracoes();
     }//GEN-LAST:event_buttonCancelarSaladaActionPerformed
 
     private void buttonConfirmarArrozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarArrozActionPerformed
@@ -1222,7 +1180,9 @@ public class TelaPorcoes extends javax.swing.JFrame {
         setPrecoSalada(textFieldPrecoSalada.getText());
         atualizarPrecoSalada();
     }//GEN-LAST:event_buttonConfirmarSaladaActionPerformed
-
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Eventos de animações dos botões">
     private void buttonFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonFecharMouseEntered
         telaPratos.animacaoBotaoPressionado("fechar", buttonFechar, true);
     }//GEN-LAST:event_buttonFecharMouseEntered
@@ -1310,8 +1270,9 @@ public class TelaPorcoes extends javax.swing.JFrame {
     private void buttonConfirmarSaladaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonConfirmarSaladaMouseExited
         telaPratos.animacaoBotaoPressionado("confirmar", buttonConfirmarSalada, false);
     }//GEN-LAST:event_buttonConfirmarSaladaMouseExited
-
-
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Objetos da tela">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelarArroz;
     private javax.swing.JButton buttonCancelarCarne;
@@ -1407,4 +1368,5 @@ public class TelaPorcoes extends javax.swing.JFrame {
     private javax.swing.JLabel textoPrato3Salada;
     private javax.swing.JLabel textoSalada;
     // End of variables declaration//GEN-END:variables
+    // </editor-fold>
 }
